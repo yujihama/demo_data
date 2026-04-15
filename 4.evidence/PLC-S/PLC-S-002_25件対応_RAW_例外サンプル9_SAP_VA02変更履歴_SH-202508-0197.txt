@@ -1,0 +1,38 @@
+================================================================
+ SAP VA02 - Document Change History
+================================================================
+Report:        Document Changes Overview (Table: CDHDR / CDPOS)
+Export Time:   2026-02-11 09:45:30 JST
+Filter:        Document = ORD-2025-0989
+
+--------------------------------------------------------------
+Document:      ORD-2025-0989
+Document Type: Sales Order (OR)
+Related Ship:  SH-202508-0197
+--------------------------------------------------------------
+
+[CHG-000 Document Creation]
+Timestamp:     2025-08-11 09:15:22
+User:          SLS004
+Action:        CREATE
+Item 10:
+  Material:    (via product master)
+  Quantity:           302 EA
+  Net value:      3,775,000 JPY
+
+[CHG-001 Field Change]
+Timestamp:     2025-08-12 14:22:18
+User:          SLS004
+Action:        UPDATE
+Approval WF:   WF-2025-SLS-2341 (approver: SLS002)
+Item 10:
+  Field:       Quantity (VBAP-KWMENG)
+    Before:           302 EA
+    After:            300 EA
+  Field:       Net value (VBAP-NETWR)
+    Before:       3,775,000 JPY
+    After:        3,750,000 JPY
+
+--------------------------------------------------------------
+END OF CHANGE HISTORY
+--------------------------------------------------------------

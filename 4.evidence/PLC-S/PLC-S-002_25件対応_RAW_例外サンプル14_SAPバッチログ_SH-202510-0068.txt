@@ -1,0 +1,50 @@
+================================================================
+ SAP Background Job Log - ZSD_SHIP_SALES_MATCH
+================================================================
+Job Name:      ZSD_SHIP_SALES_MATCH
+Schedule:      Daily nightly batch (starts 01:00 JST)
+Export Time:   2026-02-11 09:52:10 JST
+Filter:        Target shipment = SH-202510-0068
+
+--------------------------------------------------------------
+[Run 1 - Scheduled]
+--------------------------------------------------------------
+Start time:    2025-10-29 23:58:00
+End time:      2025-10-29 23:58:04
+Batch ID:      ZSD-20251029-014
+User:          SAP_BATCH
+Target:        SH-202510-0068 / shipment posted 2025-10-29
+
+Processing:
+  WMS source:      Record found (shipment completed)
+                   Amount: 2,560,000 JPY
+  SAP FI source:   No corresponding sales journal within search range
+  Tolerance check: N/A (no counter-record to compare)
+
+Result:          EXCEPTION
+Reason code:     SALES_JOURNAL_NOT_FOUND
+Action:          Transferred to ZSD_UNMATCH queue for retry on next run
+
+--------------------------------------------------------------
+[Run 2 - Retry]
+--------------------------------------------------------------
+Start time:    2025-10-31 01:15:00
+End time:      2025-10-31 01:15:03
+Batch ID:      ZSD-20251031-RETRY-014
+User:          SAP_BATCH
+Target:        SH-202510-0068 / retry from ZSD_UNMATCH queue
+
+Processing:
+  WMS source:      Record found
+                   Amount: 2,560,000 JPY
+  SAP FI source:   Sales journal found: JV-202510-0145 posted 2025-10-30 17:30:12
+                   Amount: 2,560,000 JPY
+  Tolerance check: 0 JPY diff, 0.0% (within tolerance +/- 10,000 JPY / +/- 5.0%)
+
+Result:          OK
+Match type:      AMOUNT_MATCH_EXACT
+Action:          Record closed in ZSD_UNMATCH queue
+
+--------------------------------------------------------------
+END OF JOB LOG
+--------------------------------------------------------------
