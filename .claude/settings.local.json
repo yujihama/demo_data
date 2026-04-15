@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \"import openpyxl; import PIL; print\\('openpyxl:', openpyxl.__version__\\); print\\('PIL:', PIL.__version__\\)\")"
+    ]
+  }
+}
