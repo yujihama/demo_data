@@ -1,0 +1,11 @@
+﻿# Disclosure System S06 - XBRL Validation Log
+# Period:   FY2025 Q1-Q4 (exhaustive)
+# Export:   2026-05-15 10:00:00 JST
+
+四半期,提出日,書類ID,検証結果,エラー/警告件数,提出部署,EDINET登録日
+Q1,2025-08-15,EDINET-XBRL-202508,PASS,0 errors / 0 warnings,経営企画部,2025-08-15
+Q2,2025-11-15,EDINET-XBRL-202511,PASS,0 errors / 0 warnings,経営企画部,2025-11-15
+Q3,2026-02-15,EDINET-XBRL-202602,PASS,0 errors / 0 warnings,経営企画部,2026-02-15
+Q4,2026-05-10,EDINET-XBRL-202605,PASS,0 errors / 0 warnings,経営企画部,2026-05-10
+
+# Records: 4 (exhaustive)

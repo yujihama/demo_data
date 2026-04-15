@@ -1,0 +1,30 @@
+================================================================
+ SAP S/4HANA / SD Invoice Batch Execution Log
+================================================================
+Batch Job:     ZSD_MONTHLY_INVOICE
+Job ID:        JOB_20250731_2358_01
+User:          SAP_BATCH (system)
+Start:         2025-07-31 23:58:01
+End:           2025-08-01 00:15:44
+Return code:   0 (SUCCESS)
+
+----------------------------------------------------------------
+ Processing Summary
+----------------------------------------------------------------
+Target customers:       20
+Target billing items:   269
+Invoices generated:     155
+Total amount (excl.):   JPY 1,467,305,646
+Total amount (incl.):   JPY 1,614,036,210
+Reconciliation vs SJ:   155/155 matched, delta = 0
+
+----------------------------------------------------------------
+ Dispatch
+----------------------------------------------------------------
+PDF generation:         155 files in 5 min
+Email dispatched:       128 customers
+Paper print:            26 customers
+
+----------------------------------------------------------------
+ Next scheduled:        2025-08-31 23:58:00
+----------------------------------------------------------------
