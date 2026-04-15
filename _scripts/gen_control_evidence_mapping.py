@@ -198,7 +198,11 @@ PURPOSE = {
 CROSS_REF = {
     "ELC-003": ["1.master_data/employees.xlsx (承認権限金額列)",
                 "1.master_data/user_roles_matrix.xlsx (SAPロール×ユーザ)",
-                "0.profile/company_profile.md (組織図・職務権限規程R18)"],
+                "0.profile/company_profile.md (組織図)",
+                "0.profile/規程_職務権限規程_R18.pdf (規程原本)"],
+    "PLC-S-001": ["0.profile/規程_職務権限規程_R18.pdf 第8条 (販売関連の承認権限)"],
+    "PLC-P-002": ["0.profile/規程_職務権限規程_R18.pdf 第9条 (購買関連の承認権限)"],
+    "ITGC-AC-001": ["0.profile/規程_職務権限規程_R18.pdf 第11条 (IT関連の承認権限)"],
     "ELC-005": ["4.evidence/ELC/ELC-004_全社リスクアセスメント結果_2025年度.xlsx (不正リスクファクター含む)"],
     "ELC-006": ["0.profile/company_profile.md (第6章 主要規程体系 R01-R27)"],
     "ELC-007": ["1.master_data/user_roles_matrix.xlsx (SoD違反PUR004を含むロールマトリクス)",
