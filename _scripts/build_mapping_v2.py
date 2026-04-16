@@ -173,7 +173,12 @@ CONTROL_EVIDENCE = {
         "規程_職務権限規程_R18.pdf",
         # ユーザ登録申請書 × 5
     ],
-    "ITGC-AC-002": ["SAP_SUIM_ActiveUserList_2025Q3.xlsx"],
+    "ITGC-AC-002": [
+        "SAP_SUIM_ActiveUserList_2025Q1.xlsx",
+        "SAP_SUIM_ActiveUserList_2025Q2.xlsx",
+        "SAP_SUIM_ActiveUserList_2025Q3.xlsx",
+        "SAP_SUIM_ActiveUserList_2025Q4.xlsx",
+    ],
     "ITGC-AC-003": ["SAP_SM20_SecurityAuditLog_RetiredUsers.csv"],
     "ITGC-AC-004": ["SAP_SM20_PrivilegedUser_OperationLog_202511.csv"],
     "ITGC-CM-001": [
