@@ -86,10 +86,40 @@ CROSS_REF = {
 
 
 # ============================================================
+# 実データ風命名のファイル（統制IDが名前に含まれない）→ 統制ID マッピング
+# ============================================================
+REALISTIC_NAMED_FILES = {
+    "ITGC-CM-002": [
+        # 個別UAT結果Excel（RELごと）
+        "UATテスト結果_REL-2025-002.xlsx", "UATテスト結果_REL-2025-004.xlsx",
+        "UATテスト結果_REL-2025-006.xlsx", "UATテスト結果_REL-2025-008.xlsx",
+        "UATテスト結果_REL-2025-010.xlsx", "UATテスト結果_REL-2025-012.xlsx",
+        "UATテスト結果_REL-2025-014.xlsx", "UATテスト結果_REL-2025-016.xlsx",
+        "UATテスト結果_REL-2025-018.xlsx", "UATテスト結果_REL-2025-020.xlsx",
+        "UATテスト結果_REL-2025-022.xlsx", "UATテスト結果_REL-2025-024.xlsx",
+        "UATテスト結果_REL-2025-026.xlsx", "UATテスト結果_REL-2025-028.xlsx",
+        "UATテスト結果_REL-2025-030.xlsx", "UATテスト結果_REL-2025-032.xlsx",
+        "UATテスト結果_REL-2025-034.xlsx", "UATテスト結果_REL-2025-036.xlsx",
+        "UATテスト結果_REL-2025-038.xlsx", "UATテスト結果_REL-2025-040.xlsx",
+        "UATテスト結果_REL-2025-042.xlsx", "UATテスト結果_REL-2025-044.xlsx",
+        "UATテスト結果_REL-2025-046.xlsx", "UATテスト結果_REL-2025-048.xlsx",
+        "UATテスト結果_REL-2025-050.xlsx",
+        # ツールエクスポート
+        "Xray_TestExecution_History_FY2025.csv",
+    ],
+}
+
+
+# ============================================================
 # ファイル名→統制ID マッピング（直接エビデンス判定用）
 # ============================================================
 def parse_control_id_from_filename(filename):
     """ファイル名から統制IDを抽出"""
+    # 1. 実データ風命名ファイルのマッピング先
+    for cid, files in REALISTIC_NAMED_FILES.items():
+        if filename in files:
+            return cid
+    # 2. 統制IDプレフィックス方式
     for cid in sorted(CONTROL_TO_DIR.keys(), key=len, reverse=True):
         if filename.startswith(cid + "_") or filename.startswith(cid + " ") or filename.startswith(cid + "."):
             return cid
