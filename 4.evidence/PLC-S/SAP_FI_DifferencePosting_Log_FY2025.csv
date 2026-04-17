@@ -1,0 +1,14 @@
+﻿# SAP FI - Difference Posting Log (Clearing with difference)
+# Source:   Table BSEG (Accounting Document Segment)
+# Filter:   Clearing documents with residual items / reason codes
+# Period:   FY2025
+# Export:   2026-02-11 11:00:00 JST
+
+元消込仕訳,消込日,顧客コード,請求書番号,請求金額,入金額,差額,差額理由コード,差額理由,差額処理仕訳番号,差額計上勘定,差額計上額,処理ユーザ
+CLR-202507-0009,2025-07-13,C-10001,INV-202506-0036,26378000,26376500,-1500,RC01,振込手数料（顧客負担分を当社負担に振替）,JV-ADJ-202507-0009,6300 支払手数料,1500,SAP_AUTO_CLEAR
+CLR-202505-0042,2025-05-20,C-10003,INV-202504-0088,8450000,8449200,-800,RC01,振込手数料,JV-ADJ-202505-0042,6300 支払手数料,800,SAP_AUTO_CLEAR
+CLR-202509-0018,2025-09-12,C-10012,INV-202508-0045,15200000,15199100,-900,RC01,振込手数料,JV-ADJ-202509-0018,6300 支払手数料,900,SAP_AUTO_CLEAR
+CLR-202511-0033,2025-11-25,C-10022,INV-202510-0112,6780000,6779500,-500,RC02,消費税端数差異,JV-ADJ-202511-0033,3170 未払消費税等,500,ACC006 石井 健
+
+# Records: 4 (FY2025 中の差額処理全件)
+# Reason codes: RC01=振込手数料 / RC02=消費税端数 / RC03=値引調整
