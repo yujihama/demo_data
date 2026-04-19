@@ -1,0 +1,11 @@
+﻿# Mail System - Customer Correspondence Log
+# Filter:    Subject contains "ORD-2025-0989" OR thread related to quantity change
+# Period:    2025-08-11 ~ 2025-08-12
+# Export:    2026-02-11 12:30:00 JST
+
+タイムスタンプ,メッセージID,差出人,宛先,CC,件名,方向,備考
+2025-08-12 09:32:18,MSG-CUST-202508-1247,顧客 C-10012 購買担当 (kobaya@sample-i.example),松本 香織 (SLS004),CC: 斎藤 次郎 (SLS002),【ORD-2025-0989】納入数量の変更依頼（302→300個）,RECEIVED,顧客側の生産計画変更による数量減の依頼
+2025-08-12 09:55:43,MSG-CUST-202508-1248,松本 香織 (SLS004),顧客 C-10012 購買担当,CC: 斎藤 次郎 (SLS002),Re: 【ORD-2025-0989】納入数量の変更依頼（302→300個）,SENT,数量変更を社内承認手続き後対応する旨を回答
+2025-08-12 09:58:22,MSG-CUST-202508-1249,顧客 C-10012 購買担当,松本 香織 (SLS004),CC: 斎藤 次郎 (SLS002),Re: Re: 【ORD-2025-0989】納入数量の変更依頼（302→300個）,RECEIVED,合意確認・了承の返信
+
+# Records: 3 (1 inquiry + 1 reply + 1 confirmation)
