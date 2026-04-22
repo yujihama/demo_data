@@ -1,4 +1,4 @@
-"""
+﻿"""
 Phase 3: PLC-P 拡張
 
 対象統制：
@@ -258,7 +258,7 @@ def _gen_po_pdfs(samples):
         pdf.ln(5)
 
         pdf.set_font("YuGoth", "B", 11)
-        pdf.cell(0, 6, "株式会社テクノプレシジョン 購買部",
+        pdf.cell(0, 6, "デモA株式会社 購買部",
                  new_x="LMARGIN", new_y="NEXT")
         pdf.set_font("YuGoth", "", 9)
         pdf.cell(0, 5, "〒XXX-XXXX 神奈川県横浜市港北区",

@@ -1,4 +1,4 @@
-"""
+﻿"""
 PLC-P（購買プロセス）エビデンス生成
 【真の不備ケース：PLC-P-002 発注承認の権限超過3件】を含む
 """
@@ -351,7 +351,7 @@ def gen_po_pdf(po_no, po_date, vendor_code, items, delivery_date,
 
     # 発注元（自社）
     pdf.set_font("YuGoth", "B", 11)
-    pdf.cell(0, 6, "株式会社テクノプレシジョン 購買部",
+    pdf.cell(0, 6, "デモA株式会社 購買部",
              new_x="LMARGIN", new_y="NEXT")
     pdf.set_font("YuGoth", "", 9)
     pdf.cell(0, 5, "〒XXX-XXXX 神奈川県横浜市港北区", new_x="LMARGIN", new_y="NEXT")

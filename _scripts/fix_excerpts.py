@@ -1,4 +1,4 @@
-"""
+﻿"""
 抜粋型ドキュメントの修正
 1. 職務権限規程R18: 完全版PDFを0.profile/に配置、抜粋PDFを削除
 2. SOC1レポート: 抜粋表記を削除、完全な目次構成に拡充
@@ -28,7 +28,7 @@ def gen_full_r18():
     pdf.ln(20)
 
     pdf.set_font("YuGoth", "", 12)
-    pdf.cell(0, 8, "株式会社テクノプレシジョン", align="C", new_x="LMARGIN", new_y="NEXT")
+    pdf.cell(0, 8, "デモA株式会社", align="C", new_x="LMARGIN", new_y="NEXT")
     pdf.ln(80)
 
     pdf.cell(0, 6, "制定： 1998年4月1日", align="C", new_x="LMARGIN", new_y="NEXT")
@@ -81,7 +81,7 @@ def gen_full_r18():
     pdf.add_page()
     pdf.h1("第1章 総則")
     pdf.h2("第1条 (目的)")
-    pdf.body("本規程は、株式会社テクノプレシジョン（以下「当社」という）における"
+    pdf.body("本規程は、デモA株式会社（以下「当社」という）における"
              "業務執行上の職務権限及び責任の所在を明確にし、"
              "業務の効率的かつ適正な執行を図ることを目的とする。")
 
@@ -428,7 +428,7 @@ def regenerate_soc1():
              "in Osaka and Fukuoka. As of December 2024, the company employs approximately "
              "1,500 consultants and engineers.")
 
-    pdf.h2("III-2. Scope of Services Provided to 株式会社テクノプレシジョン")
+    pdf.h2("III-2. Scope of Services Provided to デモA株式会社")
     pdf.body("外部委託先SIer-A provides the following services to the user entity:\n"
              "(1) SAP S/4HANA application support (L2/L3 support)\n"
              "(2) Custom development and enhancements (ABAP programming)\n"
@@ -507,7 +507,7 @@ def regenerate_soc1():
     # Section V: CUECs
     pdf.add_page()
     pdf.h1("Section V. Complementary User Entity Controls (CUECs)")
-    pdf.body("外部委託先SIer-A assumes that user entities (including 株式会社テクノプレシジョン) "
+    pdf.body("外部委託先SIer-A assumes that user entities (including デモA株式会社) "
              "will implement the following controls:\n\n"
              "CUEC-1: User entity management will review and authorize all change requests "
              "before SIer-A implements them.\n\n"

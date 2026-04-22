@@ -1,4 +1,4 @@
-"""
+﻿"""
 Phase 4/5/6: PLC-I, ITGC, ITAC, ELC, FCRP 拡張
 
 新方針（RAWデータのみ）適用。個別書類は必要分のみPDF化。
@@ -720,10 +720,10 @@ def gen_fcrp_002():
     random.seed(16001)
     rows = []
     subs = [
-        ("TP-TB", "テクノプレシジョン東北"),
-        ("TP-LOG", "TP物流サービス"),
-        ("TPT", "TechnoPrecision Thailand"),
-        ("TPTR", "TPトレーディング"),
+        ("DA-TB", "デモA東北"),
+        ("DA-LOG", "デモA物流サービス"),
+        ("DAT", "Demo-A Thailand"),
+        ("DATR", "デモAトレーディング"),
     ]
     for q_idx, base in enumerate([date(2025, 6, 30), date(2025, 9, 30),
                                    date(2025, 12, 31), date(2026, 3, 31)], 1):

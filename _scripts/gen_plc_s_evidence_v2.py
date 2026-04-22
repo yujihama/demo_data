@@ -1,4 +1,4 @@
-"""
+﻿"""
 PLC-S（販売プロセス）のエビデンス生成 v2
 新方針：エビデンス＝監査人が評価を実施するために被評価部門から得る「素材」
 - 母集団リスト（SAPエクスポート）
@@ -358,7 +358,7 @@ def gen_order_pdf(order_no, order_date, customer_code, items,
     pdf.ln(5)
 
     pdf.set_font("YuGoth", "B", 12)
-    pdf.cell(0, 7, "株式会社テクノプレシジョン 御中", new_x="LMARGIN", new_y="NEXT")
+    pdf.cell(0, 7, "デモA株式会社 御中", new_x="LMARGIN", new_y="NEXT")
     pdf.set_font("YuGoth", "", 10)
     pdf.cell(0, 5, "営業本部 担当者殿", new_x="LMARGIN", new_y="NEXT")
     pdf.ln(3)
@@ -847,7 +847,7 @@ def gen_invoice_pdf():
 
     pdf.set_x(110)
     pdf.set_font("YuGoth", "B", 11)
-    pdf.cell(90, 6, "株式会社テクノプレシジョン", new_x="LMARGIN", new_y="NEXT")
+    pdf.cell(90, 6, "デモA株式会社", new_x="LMARGIN", new_y="NEXT")
     pdf.set_font("YuGoth", "", 9)
     pdf.set_x(110)
     pdf.cell(90, 5, "〒XXX-XXXX 神奈川県横浜市港北区", new_x="LMARGIN", new_y="NEXT")
@@ -889,7 +889,7 @@ def gen_invoice_pdf():
     pdf.kv("お支払期日", "2025年12月31日")
     pdf.kv("お支払方法", "銀行振込")
     pdf.kv("振込先", "A銀行 支店X 普通 1234567")
-    pdf.kv("口座名義", "カ）テクノプレシジョン")
+    pdf.kv("口座名義", "カ）デモA")
     pdf.ln(6)
 
     y_stamp = pdf.get_y()

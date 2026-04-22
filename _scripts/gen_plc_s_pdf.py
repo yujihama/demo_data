@@ -1,4 +1,4 @@
-"""
+﻿"""
 PLC-S（販売プロセス）のPDF形式エビデンス生成
 - 注文書 (顧客からの注文書を受領・スキャン風)
 - 請求書 (自社発行)
@@ -36,7 +36,7 @@ def gen_order_pdf(order_no, order_date, customer_code, customer_name,
 
     # 宛名 (自社)
     pdf.set_font("YuGoth", "B", 12)
-    pdf.cell(0, 7, "株式会社テクノプレシジョン 御中", new_x="LMARGIN", new_y="NEXT")
+    pdf.cell(0, 7, "デモA株式会社 御中", new_x="LMARGIN", new_y="NEXT")
     pdf.set_font("YuGoth", "", 10)
     pdf.cell(0, 5, "営業本部 担当者殿", new_x="LMARGIN", new_y="NEXT")
     pdf.ln(3)
@@ -133,7 +133,7 @@ def gen_invoice_pdf(invoice_no, invoice_date, customer_code, customer_name,
     # 発行元（自社）
     pdf.set_x(110)
     pdf.set_font("YuGoth", "B", 11)
-    pdf.cell(90, 6, "株式会社テクノプレシジョン", new_x="LMARGIN", new_y="NEXT")
+    pdf.cell(90, 6, "デモA株式会社", new_x="LMARGIN", new_y="NEXT")
     pdf.set_font("YuGoth", "", 9)
     pdf.set_x(110)
     pdf.cell(90, 5, "〒222-0033 神奈川県横浜市港北区", new_x="LMARGIN", new_y="NEXT")
@@ -184,7 +184,7 @@ def gen_invoice_pdf(invoice_no, invoice_date, customer_code, customer_name,
     pdf.kv("お支払期日", due_date.strftime("%Y年%m月%d日"))
     pdf.kv("お支払方法", "銀行振込")
     pdf.kv("振込先", "みずほ銀行 新横浜支店 普通 1234567")
-    pdf.kv("口座名義", "カ）テクノプレシジョン")
+    pdf.kv("口座名義", "カ）デモA")
     pdf.ln(6)
 
     # 社印

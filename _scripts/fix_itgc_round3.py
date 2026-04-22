@@ -1,4 +1,4 @@
-"""ITGC第3弾修正
+﻿"""ITGC第3弾修正
 
 指摘と対応:
 1. ITGC-AC-003: SM20生ログが未整備 → 正式なSAL loginイベントログ生成 + 退職者フィルタ結果
@@ -704,7 +704,7 @@ def fix_siera_soc1():
         "company employs approximately 1,500 consultants and engineers.")
     pdf.ln(3)
     pdf.set_font('YGB', '', 12)
-    pdf.cell(0, 8, "III-2. Scope of Services Provided to 株式会社テクノプレシジョン", ln=1)
+    pdf.cell(0, 8, "III-2. Scope of Services Provided to デモA株式会社", ln=1)
     pdf.set_font('YG', '', 10)
     pdf.multi_cell(0, 6,
         "外部委託先SIer-A provides the following services to the user entity:\n"
@@ -810,7 +810,7 @@ def fix_siera_soc1():
     pdf.ln(2)
     pdf.set_font('YG', '', 10)
     pdf.multi_cell(0, 6,
-        "外部委託先SIer-A assumes that user entities (including 株式会社テクノプレシジョン) will implement the following controls:")
+        "外部委託先SIer-A assumes that user entities (including デモA株式会社) will implement the following controls:")
     pdf.ln(3)
     pdf.multi_cell(0, 6, "CUEC-1: User entity management will review and authorize all change requests before SIer-A implements them.")
     pdf.ln(2)

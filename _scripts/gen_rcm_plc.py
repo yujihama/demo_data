@@ -1,4 +1,4 @@
-"""
+﻿"""
 PLC (業務処理統制) RCM生成
 - 販売プロセス: 7統制
 - 購買プロセス: 7統制
@@ -22,7 +22,7 @@ def init_with_meta(ws, title):
     ws.cell(row=1, column=1).font = Font(name="Yu Gothic", size=14, bold=True)
     ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=len(STANDARD_COLUMNS))
 
-    meta = "評価対象: 株式会社テクノプレシジョン 親会社  /  評価期間: FY2025 (2025/4/1 - 2026/3/31)  /  作成日: 2026/04/10  /  作成者: 内部監査室"
+    meta = "評価対象: デモA株式会社 親会社  /  評価期間: FY2025 (2025/4/1 - 2026/3/31)  /  作成日: 2026/04/10  /  作成者: 内部監査室"
     ws.cell(row=2, column=1, value=meta)
     ws.cell(row=2, column=1).font = Font(name="Yu Gothic", size=9, italic=True, color="555555")
     ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=len(STANDARD_COLUMNS))

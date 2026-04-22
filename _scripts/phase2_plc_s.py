@@ -1,4 +1,4 @@
-"""
+﻿"""
 Phase 2: PLC-S 拡張
 
 対象統制：
@@ -172,7 +172,7 @@ def _gen_order_pdfs(samples):
         pdf.ln(5)
 
         pdf.set_font("YuGoth", "B", 12)
-        pdf.cell(0, 7, "株式会社テクノプレシジョン 御中", new_x="LMARGIN", new_y="NEXT")
+        pdf.cell(0, 7, "デモA株式会社 御中", new_x="LMARGIN", new_y="NEXT")
         pdf.set_font("YuGoth", "", 10)
         pdf.cell(0, 5, "営業本部 担当者殿", new_x="LMARGIN", new_y="NEXT")
         pdf.ln(3)
@@ -342,7 +342,7 @@ Paper print:            {int(invoice_count * 0.17)} customers
 
         pdf.set_x(110)
         pdf.set_font("YuGoth", "B", 11)
-        pdf.cell(90, 6, "株式会社テクノプレシジョン", new_x="LMARGIN", new_y="NEXT")
+        pdf.cell(90, 6, "デモA株式会社", new_x="LMARGIN", new_y="NEXT")
         pdf.set_font("YuGoth", "", 9)
         pdf.set_x(110)
         pdf.cell(90, 5, "〒XXX-XXXX 神奈川県横浜市港北区", new_x="LMARGIN", new_y="NEXT")
@@ -386,7 +386,7 @@ Paper print:            {int(invoice_count * 0.17)} customers
         due = date(next_y, next_m, min(25, calendar.monthrange(next_y, next_m)[1]))
         pdf.kv("お支払期日", due.strftime("%Y年%m月%d日"))
         pdf.kv("振込先", "A銀行 支店X 普通 1234567")
-        pdf.kv("口座名義", "カ）テクノプレシジョン")
+        pdf.kv("口座名義", "カ）デモA")
 
         out = BASE / f"PLC-S-003_25件対応_請求書サンプル_{y}{m:02d}_{inv_no}.pdf"
         pdf.output(str(out))

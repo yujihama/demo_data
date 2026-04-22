@@ -1,6 +1,6 @@
-"""
+﻿"""
 マスタデータ生成スクリプト（符号式ダミー名版）
-株式会社テクノプレシジョン FY2025 JSOX評価用
+デモA株式会社 FY2025 JSOX評価用
 """
 import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
@@ -62,43 +62,43 @@ def gen_employees():
     # 姓・名はサンプル用の架空の組み合わせ（日本人の一般的な苗字＋名前）
     employees = [
         # 経営・役員
-        ("E0001", "CEO001", "山本 健一", "代表取締役社長", "代表取締役社長", date(1998, 4, 1), 999999999, "yamamoto@sample-tp.co.jp", "ALL_READ", ""),
-        ("E0002", "CFO001", "渡辺 正博", "管理本部", "取締役CFO", date(2005, 4, 1), 100000000, "watanabe@sample-tp.co.jp", "FI_ALL,CO_ALL", ""),
-        ("E0003", "COO001", "小林 剛", "製造本部", "取締役COO", date(2001, 4, 1), 50000000, "kobayashi@sample-tp.co.jp", "PP_ALL", ""),
+        ("E0001", "CEO001", "山本 健一", "代表取締役社長", "代表取締役社長", date(1998, 4, 1), 999999999, "yamamoto@sample-demoa.co.jp", "ALL_READ", ""),
+        ("E0002", "CFO001", "渡辺 正博", "管理本部", "取締役CFO", date(2005, 4, 1), 100000000, "watanabe@sample-demoa.co.jp", "FI_ALL,CO_ALL", ""),
+        ("E0003", "COO001", "小林 剛", "製造本部", "取締役COO", date(2001, 4, 1), 50000000, "kobayashi@sample-demoa.co.jp", "PP_ALL", ""),
         # 経理部
-        ("E0011", "ACC001", "佐藤 一郎", "経理部", "経理部長", date(2003, 4, 1), 30000000, "sato.i@sample-tp.co.jp", "FI_MGR,CO_MGR", "決算責任者"),
-        ("E0012", "ACC002", "高橋 美咲", "経理部", "経理部課長(財務会計)", date(2008, 4, 1), 5000000, "takahashi@sample-tp.co.jp", "FI_SUP,GL_POST", ""),
-        ("E0013", "ACC003", "伊藤 健太", "経理部", "経理部課長(管理会計)", date(2010, 4, 1), 5000000, "ito@sample-tp.co.jp", "CO_SUP", ""),
-        ("E0014", "ACC004", "中村 真理", "経理部", "経理部主任", date(2015, 4, 1), 1000000, "nakamura@sample-tp.co.jp", "FI_USER,GL_POST", ""),
-        ("E0015", "ACC005", "小川 由紀", "経理部", "経理部担当", date(2019, 4, 1), 500000, "ogawa@sample-tp.co.jp", "FI_USER", ""),
-        ("E0016", "ACC006", "石井 健", "経理部", "経理部担当", date(2021, 4, 1), 500000, "ishii@sample-tp.co.jp", "FI_USER,AP_USER", ""),
+        ("E0011", "ACC001", "佐藤 一郎", "経理部", "経理部長", date(2003, 4, 1), 30000000, "sato.i@sample-demoa.co.jp", "FI_MGR,CO_MGR", "決算責任者"),
+        ("E0012", "ACC002", "高橋 美咲", "経理部", "経理部課長(財務会計)", date(2008, 4, 1), 5000000, "takahashi@sample-demoa.co.jp", "FI_SUP,GL_POST", ""),
+        ("E0013", "ACC003", "伊藤 健太", "経理部", "経理部課長(管理会計)", date(2010, 4, 1), 5000000, "ito@sample-demoa.co.jp", "CO_SUP", ""),
+        ("E0014", "ACC004", "中村 真理", "経理部", "経理部主任", date(2015, 4, 1), 1000000, "nakamura@sample-demoa.co.jp", "FI_USER,GL_POST", ""),
+        ("E0015", "ACC005", "小川 由紀", "経理部", "経理部担当", date(2019, 4, 1), 500000, "ogawa@sample-demoa.co.jp", "FI_USER", ""),
+        ("E0016", "ACC006", "石井 健", "経理部", "経理部担当", date(2021, 4, 1), 500000, "ishii@sample-demoa.co.jp", "FI_USER,AP_USER", ""),
         # 営業本部
-        ("E0021", "SLS001", "田中 太郎", "営業本部", "営業本部長", date(2000, 4, 1), 30000000, "tanaka.t@sample-tp.co.jp", "SD_MGR", ""),
-        ("E0022", "SLS002", "斎藤 次郎", "営業本部", "営業部課長(自動車)", date(2006, 4, 1), 10000000, "saito@sample-tp.co.jp", "SD_SUP", ""),
-        ("E0023", "SLS003", "藤田 修", "営業本部", "営業部課長(半導体)", date(2008, 4, 1), 10000000, "fujita@sample-tp.co.jp", "SD_SUP", ""),
-        ("E0024", "SLS004", "松本 香織", "営業本部", "営業部主任", date(2014, 4, 1), 3000000, "matsumoto@sample-tp.co.jp", "SD_USER", ""),
-        ("E0025", "SLS005", "井上 大輔", "営業本部", "営業部担当", date(2018, 4, 1), 1000000, "inoue@sample-tp.co.jp", "SD_USER", ""),
+        ("E0021", "SLS001", "田中 太郎", "営業本部", "営業本部長", date(2000, 4, 1), 30000000, "tanaka.t@sample-demoa.co.jp", "SD_MGR", ""),
+        ("E0022", "SLS002", "斎藤 次郎", "営業本部", "営業部課長(自動車)", date(2006, 4, 1), 10000000, "saito@sample-demoa.co.jp", "SD_SUP", ""),
+        ("E0023", "SLS003", "藤田 修", "営業本部", "営業部課長(半導体)", date(2008, 4, 1), 10000000, "fujita@sample-demoa.co.jp", "SD_SUP", ""),
+        ("E0024", "SLS004", "松本 香織", "営業本部", "営業部主任", date(2014, 4, 1), 3000000, "matsumoto@sample-demoa.co.jp", "SD_USER", ""),
+        ("E0025", "SLS005", "井上 大輔", "営業本部", "営業部担当", date(2018, 4, 1), 1000000, "inoue@sample-demoa.co.jp", "SD_USER", ""),
         # 購買部
-        ("E0031", "PUR001", "木村 浩二", "購買部", "購買部長", date(2002, 4, 1), 20000000, "kimura@sample-tp.co.jp", "MM_MGR", ""),
-        ("E0032", "PUR002", "林 真由美", "購買部", "購買部課長", date(2009, 4, 1), 5000000, "hayashi@sample-tp.co.jp", "MM_SUP", "承認上限500万円"),
-        ("E0033", "PUR003", "清水 智明", "購買部", "購買部主任", date(2013, 4, 1), 1000000, "shimizu@sample-tp.co.jp", "MM_USER,PO_CREATE", ""),
-        ("E0034", "PUR004", "山田 純一", "購買部", "購買部担当", date(2017, 4, 1), 500000, "yamada@sample-tp.co.jp", "MM_USER", ""),
+        ("E0031", "PUR001", "木村 浩二", "購買部", "購買部長", date(2002, 4, 1), 20000000, "kimura@sample-demoa.co.jp", "MM_MGR", ""),
+        ("E0032", "PUR002", "林 真由美", "購買部", "購買部課長", date(2009, 4, 1), 5000000, "hayashi@sample-demoa.co.jp", "MM_SUP", "承認上限500万円"),
+        ("E0033", "PUR003", "清水 智明", "購買部", "購買部主任", date(2013, 4, 1), 1000000, "shimizu@sample-demoa.co.jp", "MM_USER,PO_CREATE", ""),
+        ("E0034", "PUR004", "山田 純一", "購買部", "購買部担当", date(2017, 4, 1), 500000, "yamada@sample-demoa.co.jp", "MM_USER", ""),
         # 製造本部
-        ("E0041", "MFG001", "森 和雄", "製造本部", "製造部長", date(2001, 4, 1), 15000000, "mori@sample-tp.co.jp", "PP_MGR", ""),
-        ("E0042", "MFG002", "池田 昌夫", "製造本部", "製造課長", date(2007, 4, 1), 3000000, "ikeda@sample-tp.co.jp", "PP_SUP", ""),
-        ("E0043", "WHS001", "橋本 明", "製造本部", "倉庫課長", date(2010, 4, 1), 1000000, "hashimoto@sample-tp.co.jp", "WM_SUP", ""),
+        ("E0041", "MFG001", "森 和雄", "製造本部", "製造部長", date(2001, 4, 1), 15000000, "mori@sample-demoa.co.jp", "PP_MGR", ""),
+        ("E0042", "MFG002", "池田 昌夫", "製造本部", "製造課長", date(2007, 4, 1), 3000000, "ikeda@sample-demoa.co.jp", "PP_SUP", ""),
+        ("E0043", "WHS001", "橋本 明", "製造本部", "倉庫課長", date(2010, 4, 1), 1000000, "hashimoto@sample-demoa.co.jp", "WM_SUP", ""),
         # 情報システム部
-        ("E0051", "IT001", "岡田 宏", "情報システム部", "情報システム部長", date(2005, 4, 1), 10000000, "okada@sample-tp.co.jp", "BASIS,ADMIN", "特権ID保有"),
-        ("E0052", "IT002", "吉田 雅彦", "情報システム部", "インフラチームリーダー", date(2011, 4, 1), 3000000, "yoshida@sample-tp.co.jp", "BASIS", "特権ID保有"),
-        ("E0053", "IT003", "加藤 洋子", "情報システム部", "アプリチームリーダー", date(2012, 4, 1), 3000000, "kato@sample-tp.co.jp", "DEVELOPER", ""),
-        ("E0054", "IT004", "西田 徹", "情報システム部", "ヘルプデスク", date(2020, 4, 1), 500000, "nishida@sample-tp.co.jp", "HELPDESK", ""),
+        ("E0051", "IT001", "岡田 宏", "情報システム部", "情報システム部長", date(2005, 4, 1), 10000000, "okada@sample-demoa.co.jp", "BASIS,ADMIN", "特権ID保有"),
+        ("E0052", "IT002", "吉田 雅彦", "情報システム部", "インフラチームリーダー", date(2011, 4, 1), 3000000, "yoshida@sample-demoa.co.jp", "BASIS", "特権ID保有"),
+        ("E0053", "IT003", "加藤 洋子", "情報システム部", "アプリチームリーダー", date(2012, 4, 1), 3000000, "kato@sample-demoa.co.jp", "DEVELOPER", ""),
+        ("E0054", "IT004", "西田 徹", "情報システム部", "ヘルプデスク", date(2020, 4, 1), 500000, "nishida@sample-demoa.co.jp", "HELPDESK", ""),
         # 人事・総務
-        ("E0061", "HR001", "近藤 文子", "人事部", "人事部長", date(2004, 4, 1), 5000000, "kondo@sample-tp.co.jp", "HR_MGR", ""),
-        ("E0062", "HR002", "野村 淳", "人事部", "人事部主任", date(2016, 4, 1), 500000, "nomura@sample-tp.co.jp", "HR_USER", ""),
-        ("E0071", "GA001", "前田 美香", "総務部", "総務部長", date(2006, 4, 1), 3000000, "maeda@sample-tp.co.jp", "GA_MGR", ""),
+        ("E0061", "HR001", "近藤 文子", "人事部", "人事部長", date(2004, 4, 1), 5000000, "kondo@sample-demoa.co.jp", "HR_MGR", ""),
+        ("E0062", "HR002", "野村 淳", "人事部", "人事部主任", date(2016, 4, 1), 500000, "nomura@sample-demoa.co.jp", "HR_USER", ""),
+        ("E0071", "GA001", "前田 美香", "総務部", "総務部長", date(2006, 4, 1), 3000000, "maeda@sample-demoa.co.jp", "GA_MGR", ""),
         # 内部監査室
-        ("E0081", "IA001", "長谷川 剛", "内部監査室", "内部監査室長", date(2005, 4, 1), 0, "hasegawa@sample-tp.co.jp", "ALL_READ", ""),
-        ("E0082", "IA002", "大塚 美穂", "内部監査室", "内部監査担当", date(2015, 4, 1), 0, "otsuka@sample-tp.co.jp", "ALL_READ", ""),
+        ("E0081", "IA001", "長谷川 剛", "内部監査室", "内部監査室長", date(2005, 4, 1), 0, "hasegawa@sample-demoa.co.jp", "ALL_READ", ""),
+        ("E0082", "IA002", "大塚 美穂", "内部監査室", "内部監査担当", date(2015, 4, 1), 0, "otsuka@sample-demoa.co.jp", "ALL_READ", ""),
         # 退職者（不備ケース用）
         ("E0099", "SLS099", "退職者A", "営業本部(退職済)", "営業部担当", date(2018, 4, 1), 0, "", "SD_USER", "2025/09/30退職、SAP停止11日遅延"),
         ("E0098", "PUR099", "退職者B", "購買部(退職済)", "購買部担当", date(2017, 4, 1), 0, "", "MM_USER", "2025/11/15退職、SAP停止18日遅延"),

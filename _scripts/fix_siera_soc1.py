@@ -1,4 +1,4 @@
-"""Fix SIer-A SOC1 to clean (unqualified) opinion - aligns with 運用評価=有効/例外0"""
+﻿"""Fix SIer-A SOC1 to clean (unqualified) opinion - aligns with 運用評価=有効/例外0"""
 from fpdf import FPDF
 from pathlib import Path
 import warnings
@@ -105,7 +105,7 @@ space()
 h("III-1. Company Overview", 12)
 p("外部委託先SIer-A is a system integration services provider specializing in SAP ERP implementation, operations, and enhancement services for manufacturing and service industries in Japan. Established in 1985, the company operates from headquarters in Tokyo with delivery centers in Osaka and Fukuoka. As of December 2024, the company employs approximately 1,500 consultants and engineers.")
 space()
-h("III-2. Scope of Services Provided to 株式会社テクノプレシジョン", 12)
+h("III-2. Scope of Services Provided to デモA株式会社", 12)
 p("外部委託先SIer-A provides the following services to the user entity:")
 p("(1) SAP S/4HANA application support (L2/L3 support)")
 p("(2) Custom development and enhancements (ABAP programming)")
@@ -190,7 +190,7 @@ iv_table("IV-5. Physical Security",
 pdf.add_page()
 h("Section V. Complementary User Entity Controls (CUECs)")
 space()
-p("外部委託先SIer-A assumes that user entities (including 株式会社テクノプレシジョン) will implement the following controls:")
+p("外部委託先SIer-A assumes that user entities (including デモA株式会社) will implement the following controls:")
 space()
 p("CUEC-1: User entity management will review and authorize all change requests before SIer-A implements them.")
 space()
