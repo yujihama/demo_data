@@ -362,7 +362,7 @@ def regenerate_pdfs():
         pdf.set_font('YG', '', 10)
         if role == 'QM_USER':
             pdf.set_text_color(200, 0, 0)
-            pdf.multi_cell(0, 6, '※ 本ロール(QM_USER)は当社SoDマトリクス未登録のため、システム自動チェック対象外。情シス部アプリチームリーダーによる事前審査で SoD 違反なしと判定。')
+            pdf.multi_cell(0, 6, '※ 本ロール(QM_USER)は当社SoDマトリクスに未登録のため、SoDチェック未実施。マトリクス改訂を別途検討する。')
             pdf.set_text_color(0, 0, 0)
         else:
             pdf.cell(0, 6, '付与予定ロールの組合せについてSoD違反なし。', ln=1)
