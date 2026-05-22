@@ -15,7 +15,7 @@ from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.cidfonts import UnicodeCIDFont
-from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
+from reportlab.platypus import PageBreak, Paragraph, Preformatted, SimpleDocTemplate, Spacer, Table, TableStyle
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 
 
@@ -72,7 +72,7 @@ CONTROLS = [
         "frequency": "年次 / 随時",
         "key": "Y",
         "owner": "総務部 / 管理本部",
-        "evidence": "財務報告責任者一覧_承認証跡_FY2025.csv; 職務権限・組織体制_年次レビュー_FY2025.csv; 規程_職務権限規程_R18.pdf; employees.xlsx; company_profile.md",
+        "evidence": "財務報告責任者一覧_承認証跡_FY2025.csv; 職務権限・組織体制_年次レビュー_FY2025.csv; 規程_職務権限規程_R18.pdf; employees.xlsx; company_profile.pdf",
         "policy": "R07, R18, R19",
         "sample": "1",
         "design_proc": "職務権限規程、組織図、責任者一覧を閲覧し、財務報告に関係する承認権限と責任部門が明文化されていることを確認する。",
@@ -120,7 +120,7 @@ CONTROLS = [
         "frequency": "年次 / 随時",
         "key": "Y",
         "owner": "総務部 / 各主管部門",
-        "evidence": "規程・業務手順_年次レビュー台帳_FY2025.xlsx; company_profile.md",
+        "evidence": "規程・業務手順_年次レビュー台帳_FY2025.xlsx; company_profile.pdf",
         "policy": "R01-R27",
         "sample": "1",
         "design_proc": "規程管理ルールを閲覧し、主要規程の主管部門、見直し頻度、承認、改訂履歴、周知の要件が定義されていることを確認する。",
@@ -474,7 +474,7 @@ def rebuild_authority_review_csv() -> None:
     rows = [
         ["レビュー日", "レビュー対象", "確認観点", "結果", "対応", "承認者", "関連Evidence"],
         ["2025-04-10", "組織図・職務権限規程R18", "FY2025組織変更、管理本部/経理部/情シス部の責任分担", "改訂要", "R18を2025-04-01改訂版へ更新済", "管理本部長(CFO)", "規程_職務権限規程_R18.pdf"],
-        ["2025-04-10", "財務報告責任者一覧", "CFO、経理部長、内部監査室長、情シス部長、子会社経理責任者の明確化", "有効", "company_profile.md 第3-1章及び改訂履歴へ反映。承認証跡を別紙化。", "CFO", "財務報告責任者一覧_承認証跡_FY2025.csv; company_profile.md"],
+        ["2025-04-10", "財務報告責任者一覧", "CFO、経理部長、内部監査室長、情シス部長、子会社経理責任者の明確化", "有効", "company_profile.pdf 第3-1章及び改訂履歴へ反映。承認証跡を別紙化。", "CFO", "財務報告責任者一覧_承認証跡_FY2025.csv; company_profile.pdf"],
         ["2025-04-12", "承認権限金額と社員マスタ", "職位別承認限度と社員マスタの整合", "有効", "差異なし", "総務部長", "employees.xlsx"],
         ["2025-04-12", "SAPロール設計との連携", "権限規程とSAPロール付与方針の整合", "一部要フォロー", "SoD例外はITGC-AC-002/003及びELC-011で管理", "情シス部長", "user_roles_matrix.xlsx"],
     ]
@@ -485,11 +485,167 @@ def rebuild_authority_review_csv() -> None:
 def rebuild_financial_reporting_responsibility_approval_csv() -> None:
     rows = [
         ["証跡ID", "承認日", "対象文書", "改訂箇所", "改訂内容", "作成者", "レビュー者", "承認者", "反映確認"],
-        ["FRR-2025-001", "2025-04-10", "company_profile.md", "第3-1章 財務報告責任者一覧 / 改訂履歴", "CFO、経理部長、内部監査室長、情報システム部長、子会社経理責任者の役割と報告先を明確化", "総務部長 前田 美香", "内部監査室長 長谷川 剛", "取締役CFO 渡辺 正博", "2025-04-10反映済"],
-        ["FRR-2025-002", "2025-04-12", "職務権限・組織体制_年次レビュー_FY2025.csv", "レビュー結果2行目", "company_profile.mdへの反映箇所と承認証跡IDを追記", "総務部長 前田 美香", "経理部長 佐藤 一郎", "取締役CFO 渡辺 正博", "2025-04-12反映済"],
+        ["FRR-2025-001", "2025-04-10", "company_profile.pdf", "第3-1章 財務報告責任者一覧 / 改訂履歴", "CFO、経理部長、内部監査室長、情報システム部長、子会社経理責任者の役割と報告先を明確化", "総務部長 前田 美香", "内部監査室長 長谷川 剛", "取締役CFO 渡辺 正博", "2025-04-10反映済"],
+        ["FRR-2025-002", "2025-04-12", "職務権限・組織体制_年次レビュー_FY2025.csv", "レビュー結果2行目", "company_profile.pdfへの反映箇所と承認証跡IDを追記", "総務部長 前田 美香", "経理部長 佐藤 一郎", "取締役CFO 渡辺 正博", "2025-04-12反映済"],
     ]
     with (ELC_DIR / "財務報告責任者一覧_承認証跡_FY2025.csv").open("w", encoding="utf-8-sig", newline="") as f:
         csv.writer(f).writerows(rows)
+
+
+def company_profile_markdown() -> str:
+    source = ELC_DIR / "company_profile.md"
+    if source.exists():
+        return source.read_text(encoding="utf-8")
+
+    text = (BASE / "0.profile" / "company_profile.md").read_text(encoding="utf-8")
+    revision = """## 改訂履歴
+
+| 版 | 改訂日 | 改訂内容 | 作成/レビュー | 承認 | 関連証跡 |
+|----|--------|----------|---------------|------|----------|
+| 2025.1 | 2025年4月10日 | FY2025 J-SOX評価範囲、財務報告責任者一覧、組織体制を更新 | 総務部長 / 内部監査室長 | 取締役CFO | 財務報告責任者一覧_承認証跡_FY2025.csv |
+
+---
+
+"""
+    text = text.replace("---\n\n## 1. 会社概要", f"---\n\n{revision}## 1. 会社概要", 1)
+    responsibility = """### 3-1. 財務報告責任者一覧（FY2025）
+
+| 領域 | 責任者 | 所属/役職 | 主な責任 | 報告先 | 代替責任者 |
+|------|--------|-----------|----------|--------|------------|
+| 内部統制評価の統括 | 渡辺 正博 | 取締役CFO | J-SOX評価範囲、評価結果、不備評価、内部統制報告書の承認 | 代表取締役、取締役会、監査等委員会 | 経理部長 |
+| 決算・財務報告 | 佐藤 一郎 | 経理部長 | 月次・四半期・年度決算、会計上の見積り、連結パッケージ、開示数値のレビュー | CFO | 経理部課長(財務会計) |
+| 内部監査・独立評価 | 長谷川 剛 | 内部監査室長 | ELC、PLC、ITGC、ITAC、FCRPの整備・運用評価、不備・是正措置のフォロー | 代表取締役、監査等委員会 | 内部監査担当 |
+| IT統制・外部委託先管理 | 情報システム部長 | 情報システム部 | 財務報告関連ITのアクセス、変更、運用、SOC1/CUEC対応のレビュー | CFO | アプリケーションチームリーダー |
+| 子会社財務報告 | 各子会社経理責任者 | デモA東北、デモA物流、Demo-A Thailand、デモAトレーディング | 子会社決算、連結パッケージ、重要な会計論点の報告 | 経理部長 | 各子会社管理部長 |
+
+上記の責任者一覧は、2025年4月10日に総務部長が更新し、内部監査室長のレビューを経て、取締役CFOが承認した。承認証跡は `財務報告責任者一覧_承認証跡_FY2025.csv` に保管する。
+
+---
+
+"""
+    text = text.replace("---\n\n## 4. 主要業務プロセス（PLC対象）", f"{responsibility}## 4. 主要業務プロセス（PLC対象）", 1)
+    return text
+
+
+def markdown_to_pdf(md_text: str, output_path: Path) -> None:
+    pdfmetrics.registerFont(UnicodeCIDFont("HeiseiKakuGo-W5"))
+    doc = SimpleDocTemplate(
+        str(output_path),
+        pagesize=A4,
+        rightMargin=28,
+        leftMargin=28,
+        topMargin=28,
+        bottomMargin=28,
+    )
+    styles = getSampleStyleSheet()
+    body = ParagraphStyle("jp-body", parent=styles["BodyText"], fontName="HeiseiKakuGo-W5", fontSize=8.5, leading=12)
+    title = ParagraphStyle("jp-title", parent=body, fontSize=15, leading=20, spaceAfter=8)
+    h2 = ParagraphStyle("jp-h2", parent=body, fontSize=12, leading=16, spaceBefore=8, spaceAfter=4)
+    h3 = ParagraphStyle("jp-h3", parent=body, fontSize=10, leading=14, spaceBefore=6, spaceAfter=3)
+    code = ParagraphStyle("jp-code", parent=body, fontName="HeiseiKakuGo-W5", fontSize=7, leading=9, leftIndent=8)
+
+    story = []
+    lines = md_text.splitlines()
+    idx = 0
+    in_code = False
+    code_lines: list[str] = []
+    paragraph_lines: list[str] = []
+
+    def flush_paragraph() -> None:
+        if not paragraph_lines:
+            return
+        text = "<br/>".join(line.strip() for line in paragraph_lines if line.strip())
+        if text:
+            story.append(Paragraph(text, body))
+            story.append(Spacer(1, 3))
+        paragraph_lines.clear()
+
+    def add_table(table_lines: list[str]) -> None:
+        data = []
+        for raw in table_lines:
+            cells = [cell.strip() for cell in raw.strip().strip("|").split("|")]
+            if all(set(cell) <= {"-", ":"} for cell in cells):
+                continue
+            data.append([Paragraph(cell.replace("`", ""), body) for cell in cells])
+        if not data:
+            return
+        available = A4[0] - 56
+        col_width = available / max(len(data[0]), 1)
+        table = Table(data, colWidths=[col_width] * len(data[0]), repeatRows=1)
+        table.setStyle(
+            TableStyle(
+                [
+                    ("FONT", (0, 0), (-1, -1), "HeiseiKakuGo-W5"),
+                    ("FONTSIZE", (0, 0), (-1, -1), 7),
+                    ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#1F4E78")),
+                    ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
+                    ("GRID", (0, 0), (-1, -1), 0.25, colors.grey),
+                    ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                    ("LEFTPADDING", (0, 0), (-1, -1), 3),
+                    ("RIGHTPADDING", (0, 0), (-1, -1), 3),
+                ]
+            )
+        )
+        story.append(table)
+        story.append(Spacer(1, 5))
+
+    while idx < len(lines):
+        line = lines[idx]
+        if line.startswith("```"):
+            flush_paragraph()
+            if in_code:
+                story.append(Preformatted("\n".join(code_lines), code))
+                story.append(Spacer(1, 5))
+                code_lines = []
+                in_code = False
+            else:
+                in_code = True
+            idx += 1
+            continue
+        if in_code:
+            code_lines.append(line)
+            idx += 1
+            continue
+        if line.startswith("|") and "|" in line[1:]:
+            flush_paragraph()
+            table_lines = []
+            while idx < len(lines) and lines[idx].startswith("|"):
+                table_lines.append(lines[idx])
+                idx += 1
+            add_table(table_lines)
+            continue
+        stripped = line.strip()
+        if not stripped:
+            flush_paragraph()
+        elif stripped == "---":
+            flush_paragraph()
+            story.append(Spacer(1, 8))
+        elif stripped.startswith("# "):
+            flush_paragraph()
+            story.append(Paragraph(stripped[2:], title))
+        elif stripped.startswith("## "):
+            flush_paragraph()
+            if story:
+                story.append(PageBreak())
+            story.append(Paragraph(stripped[3:], h2))
+        elif stripped.startswith("### "):
+            flush_paragraph()
+            story.append(Paragraph(stripped[4:], h3))
+        elif stripped.startswith("- "):
+            paragraph_lines.append("・" + stripped[2:])
+        else:
+            paragraph_lines.append(stripped)
+        idx += 1
+    flush_paragraph()
+    doc.build(story)
+
+
+def rebuild_company_profile_pdf() -> None:
+    output = ELC_DIR / "company_profile.pdf"
+    markdown_to_pdf(company_profile_markdown(), output)
+    source = ELC_DIR / "company_profile.md"
+    if source.exists():
+        source.unlink()
 
 
 def rebuild_risk_assessment_xlsx() -> None:
@@ -836,6 +992,7 @@ def main() -> None:
     rebuild_ack_log()
     rebuild_authority_review_csv()
     rebuild_financial_reporting_responsibility_approval_csv()
+    rebuild_company_profile_pdf()
     rebuild_risk_assessment_xlsx()
     rebuild_policy_review_xlsx()
     rebuild_period_close_log()
