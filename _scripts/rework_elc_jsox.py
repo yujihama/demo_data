@@ -60,7 +60,7 @@ CONTROLS = [
         "policy": "R04, R08",
         "sample": "1",
         "design_proc": "倫理綱領、コンプライアンス規程、研修運用手順を閲覧し、対象者、頻度、未了者フォロー、報告責任が定義されていることを確認する。",
-        "oper_proc": "HRISの受講・受領確認ログを母集団として入手し、対象者数、完了者数、未了者ゼロ又は督促完了を確認する。",
+        "oper_proc": "HRISの対象者別受領確認ログを母集団として入手し、集計行の対象者数522名と個票明細522件、受領確認済件数522件が一致していることを確認する。",
     },
     {
         "id": "ELC-003",
@@ -72,7 +72,7 @@ CONTROLS = [
         "frequency": "年次 / 随時",
         "key": "Y",
         "owner": "総務部 / 管理本部",
-        "evidence": "職務権限・組織体制_年次レビュー_FY2025.csv; 規程_職務権限規程_R18.pdf; employees.xlsx; company_profile.md",
+        "evidence": "財務報告責任者一覧_承認証跡_FY2025.csv; 職務権限・組織体制_年次レビュー_FY2025.csv; 規程_職務権限規程_R18.pdf; employees.xlsx; company_profile.md",
         "policy": "R07, R18, R19",
         "sample": "1",
         "design_proc": "職務権限規程、組織図、責任者一覧を閲覧し、財務報告に関係する承認権限と責任部門が明文化されていることを確認する。",
@@ -415,35 +415,55 @@ def rebuild_board_monitoring_csv() -> None:
 
 
 def rebuild_ack_log() -> None:
-    rows = [
-        ["区分", "部門", "対象者数", "受領確認済", "未了", "完了率", "最終督促日"],
-        ["集計", "全社", 522, 522, 0, "100.0%", "2025-06-20"],
-        ["部門別", "経営陣", 7, 7, 0, "100.0%", ""],
-        ["部門別", "経理部", 20, 20, 0, "100.0%", ""],
-        ["部門別", "営業本部", 45, 45, 0, "100.0%", ""],
-        ["部門別", "製造本部", 280, 280, 0, "100.0%", "2025-06-12"],
-        ["部門別", "技術本部", 60, 60, 0, "100.0%", ""],
-        ["部門別", "管理本部(除く経理)", 80, 80, 0, "100.0%", "2025-06-20"],
-        ["部門別", "品質保証部", 25, 25, 0, "100.0%", ""],
-        ["部門別", "情報システム部", 15, 15, 0, "100.0%", ""],
-        [],
-        ["確認タイムスタンプ", "社員番号", "所属部門", "対象文書", "確認ステータス", "抽出区分", "備考"],
-        ["2025-05-08 12:50", "E0042", "経営陣", "倫理綱領2025年度版", "受領確認済", "代表サンプル", "取締役"],
-        ["2025-06-01 17:43", "E0133", "経理部", "倫理綱領2025年度版", "受領確認済", "代表サンプル", ""],
-        ["2025-06-20 13:44", "E0817", "営業本部", "倫理綱領2025年度版", "受領確認済", "代表サンプル", ""],
-        ["2025-05-20 15:04", "E0978", "製造本部", "倫理綱領2025年度版", "受領確認済", "代表サンプル", ""],
-        ["2025-05-25 15:04", "E0495", "技術本部", "倫理綱領2025年度版", "受領確認済", "代表サンプル", ""],
-        ["2025-05-27 10:05", "E0848", "管理本部(除く経理)", "倫理綱領2025年度版", "受領確認済", "代表サンプル", ""],
-        ["2025-06-26 11:18", "E0912", "品質保証部", "倫理綱領2025年度版", "受領確認済", "代表サンプル", ""],
-        ["2025-06-14 09:35", "E0385", "情報システム部", "倫理綱領2025年度版", "受領確認済", "代表サンプル", ""],
+    departments = [
+        ("経営陣", 4, ""),
+        ("内部監査室", 3, ""),
+        ("経理部", 20, ""),
+        ("営業本部", 45, ""),
+        ("製造本部", 280, "2025-06-12"),
+        ("技術本部", 60, ""),
+        ("管理本部(除く経理)", 60, "2025-06-20"),
+        ("品質保証部", 25, ""),
+        ("情報システム部", 15, ""),
+        ("経営企画部", 10, ""),
     ]
+    summary_rows = [["区分", "部門", "対象者数", "受領確認済", "個票ログ件数", "未了", "完了率", "最終督促日"]]
+    total = sum(count for _, count, _ in departments)
+    summary_rows.append(["集計", "全社", total, total, total, 0, "100.0%", "2025-06-20"])
+    for dept, count, reminder in departments:
+        summary_rows.append(["部門別", dept, count, count, count, 0, "100.0%", reminder])
+
+    detail_rows = [
+        ["確認タイムスタンプ", "社員番号", "所属部門", "対象文書", "確認ステータス", "HRISログID", "備考"]
+    ]
+    employee_seq = 1
+    for dept_idx, (dept, count, _) in enumerate(departments, start=1):
+        for dept_seq in range(1, count + 1):
+            day = 1 + ((employee_seq * 7 + dept_idx) % 28)
+            hour = 9 + (employee_seq % 8)
+            minute = (employee_seq * 11) % 60
+            timestamp = f"2025-06-{day:02d} {hour:02d}:{minute:02d}"
+            detail_rows.append(
+                [
+                    timestamp,
+                    f"E{employee_seq:04d}",
+                    dept,
+                    "倫理綱領2025年度版",
+                    "受領確認済",
+                    f"ACK-2025-{employee_seq:04d}",
+                    "HRIS個票ログ",
+                ]
+            )
+            employee_seq += 1
+
+    rows = summary_rows + [[]] + detail_rows
     with (ELC_DIR / "HRIS_CodeOfEthics_AcknowledgmentLog_FY2025.csv").open("w", encoding="utf-8-sig", newline="") as f:
         writer = csv.writer(f)
         writer.writerows(
             [
                 ["# HRIS Code of Ethics Acknowledgment Log FY2025"],
                 ["# Export: 2025-06-30 18:00 JST / Population: active officers and employees as of 2025-06-30"],
-                ["# Control: ELC-002 / Completeness check: HR active population 522 = acknowledgments 522"],
+                ["# Control: ELC-002 / Completeness check: target population 522 = individual log rows 522 = acknowledged 522"],
                 [],
                 *rows,
             ]
@@ -454,11 +474,21 @@ def rebuild_authority_review_csv() -> None:
     rows = [
         ["レビュー日", "レビュー対象", "確認観点", "結果", "対応", "承認者", "関連Evidence"],
         ["2025-04-10", "組織図・職務権限規程R18", "FY2025組織変更、管理本部/経理部/情シス部の責任分担", "改訂要", "R18を2025-04-01改訂版へ更新済", "管理本部長(CFO)", "規程_職務権限規程_R18.pdf"],
-        ["2025-04-10", "財務報告責任者一覧", "CFO、経理部長、内部監査室長、情シス部長、子会社経理責任者の明確化", "有効", "company_profile.mdへ反映", "CFO", "company_profile.md"],
+        ["2025-04-10", "財務報告責任者一覧", "CFO、経理部長、内部監査室長、情シス部長、子会社経理責任者の明確化", "有効", "company_profile.md 第3-1章及び改訂履歴へ反映。承認証跡を別紙化。", "CFO", "財務報告責任者一覧_承認証跡_FY2025.csv; company_profile.md"],
         ["2025-04-12", "承認権限金額と社員マスタ", "職位別承認限度と社員マスタの整合", "有効", "差異なし", "総務部長", "employees.xlsx"],
         ["2025-04-12", "SAPロール設計との連携", "権限規程とSAPロール付与方針の整合", "一部要フォロー", "SoD例外はITGC-AC-002/003及びELC-011で管理", "情シス部長", "user_roles_matrix.xlsx"],
     ]
     with (ELC_DIR / "職務権限・組織体制_年次レビュー_FY2025.csv").open("w", encoding="utf-8-sig", newline="") as f:
+        csv.writer(f).writerows(rows)
+
+
+def rebuild_financial_reporting_responsibility_approval_csv() -> None:
+    rows = [
+        ["証跡ID", "承認日", "対象文書", "改訂箇所", "改訂内容", "作成者", "レビュー者", "承認者", "反映確認"],
+        ["FRR-2025-001", "2025-04-10", "company_profile.md", "第3-1章 財務報告責任者一覧 / 改訂履歴", "CFO、経理部長、内部監査室長、情報システム部長、子会社経理責任者の役割と報告先を明確化", "総務部長 前田 美香", "内部監査室長 長谷川 剛", "取締役CFO 渡辺 正博", "2025-04-10反映済"],
+        ["FRR-2025-002", "2025-04-12", "職務権限・組織体制_年次レビュー_FY2025.csv", "レビュー結果2行目", "company_profile.mdへの反映箇所と承認証跡IDを追記", "総務部長 前田 美香", "経理部長 佐藤 一郎", "取締役CFO 渡辺 正博", "2025-04-12反映済"],
+    ]
+    with (ELC_DIR / "財務報告責任者一覧_承認証跡_FY2025.csv").open("w", encoding="utf-8-sig", newline="") as f:
         csv.writer(f).writerows(rows)
 
 
@@ -805,6 +835,7 @@ def main() -> None:
     rebuild_board_monitoring_csv()
     rebuild_ack_log()
     rebuild_authority_review_csv()
+    rebuild_financial_reporting_responsibility_approval_csv()
     rebuild_risk_assessment_xlsx()
     rebuild_policy_review_xlsx()
     rebuild_period_close_log()
