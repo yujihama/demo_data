@@ -43,11 +43,11 @@ CONTROL_EVIDENCE = {
         "規程_職務権限規程_R18.pdf",
         "employees.xlsx",
         "user_roles_matrix.xlsx",
-        "company_profile.md",
+        "company_profile.pdf",
     ],
     "ELC-004": ["全社リスクアセスメント結果_2025年度.xlsx"],
     "ELC-005": ["全社リスクアセスメント結果_2025年度.xlsx"],
-    "ELC-006": ["company_profile.md"],
+    "ELC-006": ["company_profile.pdf"],
     "ELC-007": [
         "user_roles_matrix.xlsx",
         "発注書_PO-2025-0234.pdf",
@@ -62,7 +62,7 @@ CONTROL_EVIDENCE = {
         "内部通報受付台帳_FY2025.xlsx",
     ],
     "ELC-012": [
-        "company_profile.md",
+        "company_profile.pdf",
         "SOC1_TypeII_Report_SIerA_FY2024.pdf",
     ],
 

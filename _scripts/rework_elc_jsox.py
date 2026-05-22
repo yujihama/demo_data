@@ -15,7 +15,7 @@ from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.cidfonts import UnicodeCIDFont
-from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
+from reportlab.platypus import PageBreak, Paragraph, Preformatted, SimpleDocTemplate, Spacer, Table, TableStyle
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 
 
@@ -60,7 +60,7 @@ CONTROLS = [
         "policy": "R04, R08",
         "sample": "1",
         "design_proc": "倫理綱領、コンプライアンス規程、研修運用手順を閲覧し、対象者、頻度、未了者フォロー、報告責任が定義されていることを確認する。",
-        "oper_proc": "HRISの受講・受領確認ログを母集団として入手し、対象者数、完了者数、未了者ゼロ又は督促完了を確認する。",
+        "oper_proc": "HRISの対象者別受領確認ログを母集団として入手し、集計行の対象者数522名と個票明細522件、受領確認済件数522件が一致していることを確認する。",
     },
     {
         "id": "ELC-003",
@@ -72,7 +72,7 @@ CONTROLS = [
         "frequency": "年次 / 随時",
         "key": "Y",
         "owner": "総務部 / 管理本部",
-        "evidence": "職務権限・組織体制_年次レビュー_FY2025.csv; 規程_職務権限規程_R18.pdf; employees.xlsx; company_profile.md",
+        "evidence": "財務報告責任者一覧_承認証跡_FY2025.csv; 職務権限・組織体制_年次レビュー_FY2025.csv; 規程_職務権限規程_R18.pdf; employees.xlsx; company_profile.pdf",
         "policy": "R07, R18, R19",
         "sample": "1",
         "design_proc": "職務権限規程、組織図、責任者一覧を閲覧し、財務報告に関係する承認権限と責任部門が明文化されていることを確認する。",
@@ -120,7 +120,7 @@ CONTROLS = [
         "frequency": "年次 / 随時",
         "key": "Y",
         "owner": "総務部 / 各主管部門",
-        "evidence": "規程・業務手順_年次レビュー台帳_FY2025.xlsx; company_profile.md",
+        "evidence": "規程・業務手順_年次レビュー台帳_FY2025.xlsx; company_profile.pdf",
         "policy": "R01-R27",
         "sample": "1",
         "design_proc": "規程管理ルールを閲覧し、主要規程の主管部門、見直し頻度、承認、改訂履歴、周知の要件が定義されていることを確認する。",
@@ -136,7 +136,7 @@ CONTROLS = [
         "frequency": "月次 / 四半期",
         "key": "Y",
         "owner": "経理部",
-        "evidence": "SAP_PeriodClose_JobLog_FY2025.csv; 財務報告連絡会_議事メモ_2025年度Q4.md",
+        "evidence": "SAP_PeriodClose_JobLog_FY2025.csv; 財務報告連絡会_議事メモ_2025年度Q4.pdf",
         "policy": "R16, R17",
         "sample": "12",
         "design_proc": "決算業務規程、月次締めカレンダー、財務報告連絡会の運営ルールを閲覧し、締め、レビュー、報告の責任と期限が定義されていることを確認する。",
@@ -168,7 +168,7 @@ CONTROLS = [
         "frequency": "四半期",
         "key": "Y",
         "owner": "経理部 / 経営企画部",
-        "evidence": "財務報告連絡会_開催実績_FY2025.csv; 財務報告連絡会_議事メモ_2025年度Q4.md",
+        "evidence": "財務報告連絡会_開催実績_FY2025.csv; 財務報告連絡会_議事メモ_2025年度Q4.pdf",
         "policy": "R16, R17",
         "sample": "4",
         "design_proc": "財務報告連絡会の開催目的、参加部門、議題、エスカレーション基準を確認し、財務報告上の重要情報の伝達経路が定義されていることを確認する。",
@@ -179,7 +179,7 @@ CONTROLS = [
         "coso": "モニタリング",
         "item": "内部監査による独立評価",
         "risk": "日常的モニタリングだけに依存し、財務報告内部統制の不備が独立的に識別されない。",
-        "control": "内部監査室は財務報告リスク評価に基づき年次内部監査計画を策定し、ELC、PLC、ITGC、ITAC、FCRPの整備・運用評価を実施する。発見事項はCFO、代表取締役、監査等委員会へ報告し、是正をフォローする。",
+        "control": "内部監査室は財務報告リスク評価に基づき年次内部監査計画を策定し、ELC、PLC、ITGC、ITAC、FCRPの評価対象、実施時期、担当者を定めて整備・運用評価を実施する。発見事項はCFO、代表取締役、監査等委員会へ報告し、是正をフォローする。",
         "type": "発見的",
         "frequency": "年次 / 監査計画ベース",
         "key": "Y",
@@ -211,7 +211,7 @@ CONTROLS = [
         "coso": "ITへの対応",
         "item": "ITガバナンスと外部委託先管理",
         "risk": "財務報告に係るIT環境、アクセス、変更、運用、外部委託先のリスクが経営レベルで把握されず、ITGC/ITACの不備が財務報告へ波及する。",
-        "control": "情報システム部は年次IT計画、情報セキュリティ方針、ITGC評価範囲、外部委託先SOC1報告書及びCUEC対応状況をレビューし、重要なITリスク及び委託先不備を経営会議又は取締役会へ報告する。",
+        "control": "情報システム部は年次IT計画、情報セキュリティ方針、ITGC評価範囲、外部委託先SOC1報告書及びCUEC対応状況をレビューする。CUECごとに自社側統制、責任者、対応状況、証跡、報告記録を台帳で管理し、重要なITリスク及び委託先不備を経営会議又は取締役会へ報告する。",
         "type": "予防的",
         "frequency": "年次 / 四半期",
         "key": "Y",
@@ -219,8 +219,8 @@ CONTROLS = [
         "evidence": "ITガバナンス・外部委託先レビュー_FY2025.xlsx; SOC1_TypeII_Report_SIerA_FY2024.pdf",
         "policy": "R21-R27",
         "sample": "1",
-        "design_proc": "情報セキュリティ基本方針、IT関連規程、外部委託管理規程を閲覧し、IT計画、ITリスク、委託先報告書、CUEC対応のレビュー要件が定義されていることを確認する。",
-        "oper_proc": "ITガバナンス・外部委託先レビュー台帳とSOC1報告書を閲覧し、財務報告関連ITリスク、SOC1例外、CUEC対応、経営報告が記録されていることを確認する。",
+        "design_proc": "情報セキュリティ基本方針、IT関連規程、外部委託管理規程を閲覧し、IT計画、ITリスク、委託先報告書、CUEC対応のレビュー要件及び経営報告要件が定義されていることを確認する。",
+        "oper_proc": "ITガバナンス・外部委託先レビュー台帳とSOC1報告書を閲覧し、財務報告関連ITリスク、SOC1例外、CUECごとの自社側統制ID・責任者・対応状況・証跡、及び経営報告ログが追跡可能に記録されていることを確認する。",
     },
 ]
 
@@ -303,8 +303,8 @@ def rebuild_mapping_csv() -> None:
     rows: list[dict[str, str]] = []
     for control in CONTROLS:
         filenames = [name.strip() for name in control["evidence"].split(";")]
-        for idx, filename in enumerate(filenames, start=1):
-            rows.append({"key": control["id"], "sample_no": str(idx), "filename": filename})
+        for filename in filenames:
+            rows.append({"key": control["id"], "sample_no": "1", "filename": filename})
     write_csv(RCM_DIR / "Evidence_Mapping_ELC.csv", rows, ["key", "sample_no", "filename"])
 
 
@@ -415,35 +415,55 @@ def rebuild_board_monitoring_csv() -> None:
 
 
 def rebuild_ack_log() -> None:
-    rows = [
-        ["区分", "部門", "対象者数", "受領確認済", "未了", "完了率", "最終督促日"],
-        ["集計", "全社", 522, 522, 0, "100.0%", "2025-06-20"],
-        ["部門別", "経営陣", 7, 7, 0, "100.0%", ""],
-        ["部門別", "経理部", 20, 20, 0, "100.0%", ""],
-        ["部門別", "営業本部", 45, 45, 0, "100.0%", ""],
-        ["部門別", "製造本部", 280, 280, 0, "100.0%", "2025-06-12"],
-        ["部門別", "技術本部", 60, 60, 0, "100.0%", ""],
-        ["部門別", "管理本部(除く経理)", 80, 80, 0, "100.0%", "2025-06-20"],
-        ["部門別", "品質保証部", 25, 25, 0, "100.0%", ""],
-        ["部門別", "情報システム部", 15, 15, 0, "100.0%", ""],
-        [],
-        ["確認タイムスタンプ", "社員番号", "所属部門", "対象文書", "確認ステータス", "抽出区分", "備考"],
-        ["2025-05-08 12:50", "E0042", "経営陣", "倫理綱領2025年度版", "受領確認済", "代表サンプル", "取締役"],
-        ["2025-06-01 17:43", "E0133", "経理部", "倫理綱領2025年度版", "受領確認済", "代表サンプル", ""],
-        ["2025-06-20 13:44", "E0817", "営業本部", "倫理綱領2025年度版", "受領確認済", "代表サンプル", ""],
-        ["2025-05-20 15:04", "E0978", "製造本部", "倫理綱領2025年度版", "受領確認済", "代表サンプル", ""],
-        ["2025-05-25 15:04", "E0495", "技術本部", "倫理綱領2025年度版", "受領確認済", "代表サンプル", ""],
-        ["2025-05-27 10:05", "E0848", "管理本部(除く経理)", "倫理綱領2025年度版", "受領確認済", "代表サンプル", ""],
-        ["2025-06-26 11:18", "E0912", "品質保証部", "倫理綱領2025年度版", "受領確認済", "代表サンプル", ""],
-        ["2025-06-14 09:35", "E0385", "情報システム部", "倫理綱領2025年度版", "受領確認済", "代表サンプル", ""],
+    departments = [
+        ("経営陣", 4, ""),
+        ("内部監査室", 3, ""),
+        ("経理部", 20, ""),
+        ("営業本部", 45, ""),
+        ("製造本部", 280, "2025-06-12"),
+        ("技術本部", 60, ""),
+        ("管理本部(除く経理)", 60, "2025-06-20"),
+        ("品質保証部", 25, ""),
+        ("情報システム部", 15, ""),
+        ("経営企画部", 10, ""),
     ]
+    summary_rows = [["区分", "部門", "対象者数", "受領確認済", "個票ログ件数", "未了", "完了率", "最終督促日"]]
+    total = sum(count for _, count, _ in departments)
+    summary_rows.append(["集計", "全社", total, total, total, 0, "100.0%", "2025-06-20"])
+    for dept, count, reminder in departments:
+        summary_rows.append(["部門別", dept, count, count, count, 0, "100.0%", reminder])
+
+    detail_rows = [
+        ["確認タイムスタンプ", "社員番号", "所属部門", "対象文書", "確認ステータス", "HRISログID", "備考"]
+    ]
+    employee_seq = 1
+    for dept_idx, (dept, count, _) in enumerate(departments, start=1):
+        for dept_seq in range(1, count + 1):
+            day = 1 + ((employee_seq * 7 + dept_idx) % 28)
+            hour = 9 + (employee_seq % 8)
+            minute = (employee_seq * 11) % 60
+            timestamp = f"2025-06-{day:02d} {hour:02d}:{minute:02d}"
+            detail_rows.append(
+                [
+                    timestamp,
+                    f"E{employee_seq:04d}",
+                    dept,
+                    "倫理綱領2025年度版",
+                    "受領確認済",
+                    f"ACK-2025-{employee_seq:04d}",
+                    "HRIS個票ログ",
+                ]
+            )
+            employee_seq += 1
+
+    rows = summary_rows + [[]] + detail_rows
     with (ELC_DIR / "HRIS_CodeOfEthics_AcknowledgmentLog_FY2025.csv").open("w", encoding="utf-8-sig", newline="") as f:
         writer = csv.writer(f)
         writer.writerows(
             [
                 ["# HRIS Code of Ethics Acknowledgment Log FY2025"],
                 ["# Export: 2025-06-30 18:00 JST / Population: active officers and employees as of 2025-06-30"],
-                ["# Control: ELC-002 / Completeness check: HR active population 522 = acknowledgments 522"],
+                ["# Control: ELC-002 / Completeness check: target population 522 = individual log rows 522 = acknowledged 522"],
                 [],
                 *rows,
             ]
@@ -454,12 +474,178 @@ def rebuild_authority_review_csv() -> None:
     rows = [
         ["レビュー日", "レビュー対象", "確認観点", "結果", "対応", "承認者", "関連Evidence"],
         ["2025-04-10", "組織図・職務権限規程R18", "FY2025組織変更、管理本部/経理部/情シス部の責任分担", "改訂要", "R18を2025-04-01改訂版へ更新済", "管理本部長(CFO)", "規程_職務権限規程_R18.pdf"],
-        ["2025-04-10", "財務報告責任者一覧", "CFO、経理部長、内部監査室長、情シス部長、子会社経理責任者の明確化", "有効", "company_profile.mdへ反映", "CFO", "company_profile.md"],
+        ["2025-04-10", "財務報告責任者一覧", "CFO、経理部長、内部監査室長、情シス部長、子会社経理責任者の明確化", "有効", "company_profile.pdf 第3-1章及び改訂履歴へ反映。承認証跡を別紙化。", "CFO", "財務報告責任者一覧_承認証跡_FY2025.csv; company_profile.pdf"],
         ["2025-04-12", "承認権限金額と社員マスタ", "職位別承認限度と社員マスタの整合", "有効", "差異なし", "総務部長", "employees.xlsx"],
         ["2025-04-12", "SAPロール設計との連携", "権限規程とSAPロール付与方針の整合", "一部要フォロー", "SoD例外はITGC-AC-002/003及びELC-011で管理", "情シス部長", "user_roles_matrix.xlsx"],
     ]
     with (ELC_DIR / "職務権限・組織体制_年次レビュー_FY2025.csv").open("w", encoding="utf-8-sig", newline="") as f:
         csv.writer(f).writerows(rows)
+
+
+def rebuild_financial_reporting_responsibility_approval_csv() -> None:
+    rows = [
+        ["証跡ID", "承認日", "対象文書", "改訂箇所", "改訂内容", "作成者", "レビュー者", "承認者", "反映確認"],
+        ["FRR-2025-001", "2025-04-10", "company_profile.pdf", "第3-1章 財務報告責任者一覧 / 改訂履歴", "CFO、経理部長、内部監査室長、情報システム部長、子会社経理責任者の役割と報告先を明確化", "総務部長 前田 美香", "内部監査室長 長谷川 剛", "取締役CFO 渡辺 正博", "2025-04-10反映済"],
+        ["FRR-2025-002", "2025-04-12", "職務権限・組織体制_年次レビュー_FY2025.csv", "レビュー結果2行目", "company_profile.pdfへの反映箇所と承認証跡IDを追記", "総務部長 前田 美香", "経理部長 佐藤 一郎", "取締役CFO 渡辺 正博", "2025-04-12反映済"],
+    ]
+    with (ELC_DIR / "財務報告責任者一覧_承認証跡_FY2025.csv").open("w", encoding="utf-8-sig", newline="") as f:
+        csv.writer(f).writerows(rows)
+
+
+def company_profile_markdown() -> str:
+    source = ELC_DIR / "company_profile.md"
+    if source.exists():
+        return source.read_text(encoding="utf-8")
+
+    text = (BASE / "0.profile" / "company_profile.md").read_text(encoding="utf-8")
+    revision = """## 改訂履歴
+
+| 版 | 改訂日 | 改訂内容 | 作成/レビュー | 承認 | 関連証跡 |
+|----|--------|----------|---------------|------|----------|
+| 2025.1 | 2025年4月10日 | FY2025 J-SOX評価範囲、財務報告責任者一覧、組織体制を更新 | 総務部長 / 内部監査室長 | 取締役CFO | 財務報告責任者一覧_承認証跡_FY2025.csv |
+
+---
+
+"""
+    text = text.replace("---\n\n## 1. 会社概要", f"---\n\n{revision}## 1. 会社概要", 1)
+    responsibility = """### 3-1. 財務報告責任者一覧（FY2025）
+
+| 領域 | 責任者 | 所属/役職 | 主な責任 | 報告先 | 代替責任者 |
+|------|--------|-----------|----------|--------|------------|
+| 内部統制評価の統括 | 渡辺 正博 | 取締役CFO | J-SOX評価範囲、評価結果、不備評価、内部統制報告書の承認 | 代表取締役、取締役会、監査等委員会 | 経理部長 |
+| 決算・財務報告 | 佐藤 一郎 | 経理部長 | 月次・四半期・年度決算、会計上の見積り、連結パッケージ、開示数値のレビュー | CFO | 経理部課長(財務会計) |
+| 内部監査・独立評価 | 長谷川 剛 | 内部監査室長 | ELC、PLC、ITGC、ITAC、FCRPの整備・運用評価、不備・是正措置のフォロー | 代表取締役、監査等委員会 | 内部監査担当 |
+| IT統制・外部委託先管理 | 情報システム部長 | 情報システム部 | 財務報告関連ITのアクセス、変更、運用、SOC1/CUEC対応のレビュー | CFO | アプリケーションチームリーダー |
+| 子会社財務報告 | 各子会社経理責任者 | デモA東北、デモA物流、Demo-A Thailand、デモAトレーディング | 子会社決算、連結パッケージ、重要な会計論点の報告 | 経理部長 | 各子会社管理部長 |
+
+上記の責任者一覧は、2025年4月10日に総務部長が更新し、内部監査室長のレビューを経て、取締役CFOが承認した。承認証跡は `財務報告責任者一覧_承認証跡_FY2025.csv` に保管する。
+
+---
+
+"""
+    text = text.replace("---\n\n## 4. 主要業務プロセス（PLC対象）", f"{responsibility}## 4. 主要業務プロセス（PLC対象）", 1)
+    return text
+
+
+def markdown_to_pdf(md_text: str, output_path: Path) -> None:
+    pdfmetrics.registerFont(UnicodeCIDFont("HeiseiKakuGo-W5"))
+    doc = SimpleDocTemplate(
+        str(output_path),
+        pagesize=A4,
+        rightMargin=28,
+        leftMargin=28,
+        topMargin=28,
+        bottomMargin=28,
+    )
+    styles = getSampleStyleSheet()
+    body = ParagraphStyle("jp-body", parent=styles["BodyText"], fontName="HeiseiKakuGo-W5", fontSize=8.5, leading=12)
+    title = ParagraphStyle("jp-title", parent=body, fontSize=15, leading=20, spaceAfter=8)
+    h2 = ParagraphStyle("jp-h2", parent=body, fontSize=12, leading=16, spaceBefore=8, spaceAfter=4)
+    h3 = ParagraphStyle("jp-h3", parent=body, fontSize=10, leading=14, spaceBefore=6, spaceAfter=3)
+    code = ParagraphStyle("jp-code", parent=body, fontName="HeiseiKakuGo-W5", fontSize=7, leading=9, leftIndent=8)
+
+    story = []
+    lines = md_text.splitlines()
+    idx = 0
+    in_code = False
+    code_lines: list[str] = []
+    paragraph_lines: list[str] = []
+
+    def flush_paragraph() -> None:
+        if not paragraph_lines:
+            return
+        text = "<br/>".join(line.strip() for line in paragraph_lines if line.strip())
+        if text:
+            story.append(Paragraph(text, body))
+            story.append(Spacer(1, 3))
+        paragraph_lines.clear()
+
+    def add_table(table_lines: list[str]) -> None:
+        data = []
+        for raw in table_lines:
+            cells = [cell.strip() for cell in raw.strip().strip("|").split("|")]
+            if all(set(cell) <= {"-", ":"} for cell in cells):
+                continue
+            data.append([Paragraph(cell.replace("`", ""), body) for cell in cells])
+        if not data:
+            return
+        available = A4[0] - 56
+        col_width = available / max(len(data[0]), 1)
+        table = Table(data, colWidths=[col_width] * len(data[0]), repeatRows=1)
+        table.setStyle(
+            TableStyle(
+                [
+                    ("FONT", (0, 0), (-1, -1), "HeiseiKakuGo-W5"),
+                    ("FONTSIZE", (0, 0), (-1, -1), 7),
+                    ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#1F4E78")),
+                    ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
+                    ("GRID", (0, 0), (-1, -1), 0.25, colors.grey),
+                    ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                    ("LEFTPADDING", (0, 0), (-1, -1), 3),
+                    ("RIGHTPADDING", (0, 0), (-1, -1), 3),
+                ]
+            )
+        )
+        story.append(table)
+        story.append(Spacer(1, 5))
+
+    while idx < len(lines):
+        line = lines[idx]
+        if line.startswith("```"):
+            flush_paragraph()
+            if in_code:
+                story.append(Preformatted("\n".join(code_lines), code))
+                story.append(Spacer(1, 5))
+                code_lines = []
+                in_code = False
+            else:
+                in_code = True
+            idx += 1
+            continue
+        if in_code:
+            code_lines.append(line)
+            idx += 1
+            continue
+        if line.startswith("|") and "|" in line[1:]:
+            flush_paragraph()
+            table_lines = []
+            while idx < len(lines) and lines[idx].startswith("|"):
+                table_lines.append(lines[idx])
+                idx += 1
+            add_table(table_lines)
+            continue
+        stripped = line.strip()
+        if not stripped:
+            flush_paragraph()
+        elif stripped == "---":
+            flush_paragraph()
+            story.append(Spacer(1, 8))
+        elif stripped.startswith("# "):
+            flush_paragraph()
+            story.append(Paragraph(stripped[2:], title))
+        elif stripped.startswith("## "):
+            flush_paragraph()
+            if story:
+                story.append(PageBreak())
+            story.append(Paragraph(stripped[3:], h2))
+        elif stripped.startswith("### "):
+            flush_paragraph()
+            story.append(Paragraph(stripped[4:], h3))
+        elif stripped.startswith("- "):
+            paragraph_lines.append("・" + stripped[2:])
+        else:
+            paragraph_lines.append(stripped)
+        idx += 1
+    flush_paragraph()
+    doc.build(story)
+
+
+def rebuild_company_profile_pdf() -> None:
+    output = ELC_DIR / "company_profile.pdf"
+    markdown_to_pdf(company_profile_markdown(), output)
+    source = ELC_DIR / "company_profile.md"
+    if source.exists():
+        source.unlink()
 
 
 def rebuild_risk_assessment_xlsx() -> None:
@@ -625,7 +811,10 @@ def rebuild_financial_reporting_minutes() -> None:
 - CFOは、重要な不備候補及び判断保留事項を2026年3月25日取締役会へ報告する。
 - 内部監査室は、追加Evidenceの入手状況を2026年3月31日までに更新する。
 """
-    (ELC_DIR / "財務報告連絡会_議事メモ_2025年度Q4.md").write_text(content, encoding="utf-8")
+    markdown_to_pdf(content, ELC_DIR / "財務報告連絡会_議事メモ_2025年度Q4.pdf")
+    legacy_md = ELC_DIR / "財務報告連絡会_議事メモ_2025年度Q4.md"
+    if legacy_md.exists():
+        legacy_md.unlink()
 
 
 def rebuild_financial_reporting_meeting_log() -> None:
@@ -675,21 +864,58 @@ def rebuild_it_governance_xlsx() -> None:
     wb = Workbook()
     ws = wb.active
     ws.title = "ITGovernance"
-    ws.append(["レビュー日", "領域", "確認事項", "結果", "対応", "報告先"])
+    ws.append(["レビュー日", "領域", "確認事項", "結果", "対応", "報告先", "報告記録ID"])
     rows = [
-        ["2025-04-20", "IT計画", "FY2025 IT投資、ERP保守、セキュリティ施策、年度末変更凍結方針", "承認済", "経営会議で四半期進捗報告", "経営会議"],
-        ["2025-06-30", "ITGC評価範囲", "SAP、WMS、連結決算、開示システム、給与SaaSの財務報告関連性", "評価範囲に反映", "ITGC/ITAC RCMへ連携", "取締役会"],
-        ["2025-09-30", "情報セキュリティ", "アクセス管理、ログ監視、特権ID、退職者ID停止", "退職者停止遅延をフォロー", "ITGC-AC-003及びELC-011で是正管理", "CFO/監査等委員会"],
-        ["2026-03-18", "年度末変更凍結", "年度末決算期間の本番変更凍結、緊急変更時のCFO承認", "有効", "変更管理ログと照合予定", "財務報告連絡会"],
+        ["2025-04-20", "IT計画", "FY2025 IT投資、ERP保守、セキュリティ施策、年度末変更凍結方針", "承認済", "経営会議で四半期進捗報告", "経営会議", "RPT-IT-2025-01"],
+        ["2025-06-30", "ITGC評価範囲", "SAP、WMS、連結決算、開示システム、給与SaaSの財務報告関連性", "評価範囲に反映", "ITGC/ITAC RCMへ連携", "取締役会", "RPT-IT-2025-02"],
+        ["2025-09-30", "SOC1/CUEC・情報セキュリティ", "SOC1例外、CUEC割当、アクセス管理、ログ監視、特権ID、退職者ID停止", "CUEC割当済。退職者停止遅延をフォロー", "CUECMapping及びITGC-AC-003/ELC-011で管理", "CFO/監査等委員会", "RPT-IT-2025-03"],
+        ["2026-03-18", "年度末変更凍結", "年度末決算期間の本番変更凍結、緊急変更時のCFO承認、CUEC対応状況の期末確認", "有効", "変更管理ログ、CUECMapping、ReportLogと照合済", "財務報告連絡会", "RPT-IT-2025-04"],
     ]
     for row in rows:
         ws.append(row)
     style_worksheet(ws, "A2")
 
     soc = wb.create_sheet("SOC1Review")
-    soc.append(["委託先", "報告書", "対象期間", "統制目的", "例外", "CUEC対応", "結論"])
-    soc.append(["SIer-A", "SOC1 Type II Report SIerA FY2024", "2024-04-01 - 2025-03-31", "ERP変更管理、運用、アクセス、バックアップ", "重大例外なし", "ユーザアクセス承認、変更依頼承認、障害連絡先を自社ITGCで対応", "財務報告への未対応リスクなし"])
+    soc.append(["委託先", "報告書", "対象期間", "統制目的", "SOC1例外", "CUEC総数", "CUEC割当結果", "結論", "報告記録ID"])
+    soc.append(["SIer-A", "SOC1 Type II Report SIerA FY2024", "2024-04-01 - 2025-03-31", "ERP変更管理、運用、アクセス、バックアップ", "重大例外なし", "5件すべて自社側統制へ割当済", "CUECMapping参照。1件は退職者停止遅延としてELC-011/ITGC-AC-003で是正管理中", "未割当CUECなし。財務報告への未対応リスクなし", "RPT-IT-2025-03"])
     style_worksheet(soc, "A2")
+
+    cuec = wb.create_sheet("CUECMapping")
+    cuec.append([
+        "CUEC ID",
+        "SOC1該当箇所",
+        "CUEC要求事項",
+        "自社側統制ID",
+        "自社側統制名",
+        "統制責任者",
+        "対応状況",
+        "確認日",
+        "確認証跡",
+        "関連不備/フォロー",
+        "報告記録ID",
+    ])
+    cuec_rows = [
+        ["CUEC-01", "User Access - UCC1", "利用者登録・権限変更はユーザ企業が承認し、委託先へ正確に依頼する。", "ITGC-AC-001", "SAPユーザ登録・変更承認", "情報システム部長", "対応済", "2025-09-30", "Workflow_UserRegistration_ApprovalHistory_FY2025.csv; UserRegistration_SampleTransactionList_FY2025.xlsx", "なし", "RPT-IT-2025-03"],
+        ["CUEC-02", "User Access - UCC2", "ユーザ企業は定期的に利用者権限をレビューし、不要権限を削除する。", "ITGC-AC-002; ITGC-AC-003", "四半期ユーザアクセスレビュー / 退職者ID停止", "情報システム部長", "対応中", "2025-12-12", "user_roles_matrix.xlsx; 内部統制不備・是正措置管理台帳_FY2025.xlsx", "ITGC-AC-003としてELC-011で是正管理", "RPT-IT-2025-03; RPT-IT-2025-04"],
+        ["CUEC-03", "Change Management - UCC1", "本番変更はユーザ企業の変更依頼・UAT承認に基づき実施する。", "ITGC-CM-001; ITGC-CM-002", "変更要求承認 / UAT承認", "アプリケーションチームリーダー", "対応済", "2025-09-30", "change_management_log.xlsx; UAT_Approval_Evidence_FY2025.xlsx", "なし", "RPT-IT-2025-03"],
+        ["CUEC-04", "Operations - UCC1", "障害通知先及びエスカレーション先をユーザ企業が維持する。", "ITGC-OM-002", "ジョブ・障害監視とエスカレーション", "インフラチームリーダー", "対応済", "2026-03-18", "Zabbix_IncidentLog_FY2025.csv; 財務報告連絡会_開催実績_FY2025.csv", "なし", "RPT-IT-2025-04"],
+        ["CUEC-05", "Backup - UCC1", "バックアップ対象、保管期間、リストア確認結果をユーザ企業が確認する。", "ITGC-OM-001", "バックアップ監視・リストア確認", "インフラチームリーダー", "対応済", "2026-03-18", "DB13_BackupJobLog_FY2025.csv; DR_RestoreTest_Result_FY2025.xlsx", "なし", "RPT-IT-2025-04"],
+    ]
+    for row in cuec_rows:
+        cuec.append(row)
+    style_worksheet(cuec, "A2")
+
+    reports = wb.create_sheet("ReportLog")
+    reports.append(["報告記録ID", "報告日", "会議体/報告先", "報告者", "報告内容", "関連CUEC ID", "フォローID", "結論/指示"])
+    report_rows = [
+        ["RPT-IT-2025-01", "2025-04-20", "経営会議", "情報システム部長", "FY2025 IT計画、ERP保守、セキュリティ施策、年度末変更凍結方針", "N/A", "なし", "四半期進捗を経営会議へ報告する"],
+        ["RPT-IT-2025-02", "2025-06-30", "取締役会", "CFO / 情報システム部長", "財務報告関連IT範囲、ITGC/ITAC評価範囲、外部委託SOC1入手予定", "N/A", "なし", "SAP、WMS、連結決算、開示システムを評価範囲に含める"],
+        ["RPT-IT-2025-03", "2025-09-30", "CFO/監査等委員会", "情報システム部長", "SOC1レビュー結果、CUEC別自社側統制割当、退職者ID停止遅延", "CUEC-01,CUEC-02,CUEC-03", "ITGC-AC-003", "CUEC-02関連の退職者停止遅延をELC-011で是正管理する"],
+        ["RPT-IT-2025-04", "2026-03-18", "財務報告連絡会", "情報システム部長", "年度末変更凍結、CUEC対応状況、運用・バックアップ証跡確認", "CUEC-02,CUEC-04,CUEC-05", "ITGC-AC-003", "未割当CUECなし。ITGC-AC-003はQ4不備評価へ反映する"],
+    ]
+    for row in report_rows:
+        reports.append(row)
+    style_worksheet(reports, "A2")
     wb.save(ELC_DIR / "ITガバナンス・外部委託先レビュー_FY2025.xlsx")
 
 
@@ -701,6 +927,11 @@ def rebuild_internal_audit_plan_pdf() -> None:
     title = ParagraphStyle("jp-title", parent=styles["Title"], fontName="HeiseiKakuGo-W5", fontSize=16, leading=20)
     heading = ParagraphStyle("jp-heading", parent=styles["Heading2"], fontName="HeiseiKakuGo-W5", fontSize=12, leading=16, spaceBefore=8)
     body = ParagraphStyle("jp-body", parent=styles["BodyText"], fontName="HeiseiKakuGo-W5", fontSize=9, leading=13)
+    table_body = ParagraphStyle("jp-table", parent=body, fontSize=7.2, leading=9)
+
+    def cell(text: str) -> Paragraph:
+        return Paragraph(str(text).replace("\n", "<br/>"), table_body)
+
     story = [
         Paragraph("2025年度 内部監査計画書", title),
         Paragraph("作成: デモA株式会社 内部監査室 / 作成日: 2025年4月10日 / 承認: 取締役会 2025年4月15日", body),
@@ -718,14 +949,36 @@ def rebuild_internal_audit_plan_pdf() -> None:
     ]
     table = Table(scope_data, colWidths=[90, 360])
     table.setStyle(TableStyle([("FONT", (0, 0), (-1, -1), "HeiseiKakuGo-W5"), ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#1F4E78")), ("TEXTCOLOR", (0, 0), (-1, 0), colors.white), ("GRID", (0, 0), (-1, -1), 0.5, colors.grey), ("VALIGN", (0, 0), (-1, -1), "TOP")]))
-    story.extend([table, Spacer(1, 10), Paragraph("3. ELC重点評価項目", heading)])
+    story.extend([table, Spacer(1, 10), Paragraph("3. 実施時期・担当者計画", heading)])
+    schedule_data = [
+        [cell("対象領域"), cell("実施時期"), cell("主担当者"), cell("レビュー者"), cell("主な手続/成果物")],
+        [cell("ELC"), cell("2025年6月-7月"), cell("内部監査担当 大塚 美穂 (IA002)"), cell("内部監査室長 長谷川 剛 (IA001)"), cell("全社統制12項目の整備評価、運用証跡入手、取締役会・監査等委員会報告状況の確認")],
+        [cell("PLC 販売"), cell("2025年8月-10月"), cell("内部監査担当 山口 健 (IA003)"), cell("内部監査室長 長谷川 剛 (IA001)"), cell("販売プロセスRCM、受注・出荷・請求・入金サンプル、例外一覧")],
+        [cell("PLC 購買"), cell("2025年9月-11月"), cell("内部監査担当 大塚 美穂 (IA002)"), cell("内部監査室長 長谷川 剛 (IA001)"), cell("購買承認、発注・検収・請求照合、PLC-P-002例外フォロー")],
+        [cell("PLC 在庫/原価"), cell("2025年9月-12月"), cell("内部監査担当 山口 健 (IA003)"), cell("内部監査室長 長谷川 剛 (IA001)"), cell("実地棚卸、棚卸差異、標準原価改訂、評価損計算の検証")],
+        [cell("ITGC/ITAC"), cell("2025年8月-2026年1月"), cell("内部監査担当 大塚 美穂 (IA002)"), cell("内部監査室長 長谷川 剛 (IA001)"), cell("アクセス、変更、運用、SOC1/CUEC対応、ITAC自動統制の整備・運用評価")],
+        [cell("FCRP"), cell("2025年12月-2026年3月"), cell("内部監査担当 山口 健 (IA003)"), cell("内部監査室長 長谷川 剛 (IA001)"), cell("月次・四半期・年度決算、連結、見積り、開示チェックリストの検証")],
+        [cell("不備評価・是正フォロー"), cell("2026年1月-3月"), cell("内部監査室長 長谷川 剛 (IA001)"), cell("CFO 渡辺 正博"), cell("不備重要性評価、是正責任者・期限確認、CFO/監査等委員会/取締役会への報告")],
+    ]
+    schedule_table = Table(schedule_data, colWidths=[58, 92, 100, 100, 116], repeatRows=1)
+    schedule_table.setStyle(TableStyle([("FONT", (0, 0), (-1, -1), "HeiseiKakuGo-W5"), ("FONTSIZE", (0, 0), (-1, -1), 7.2), ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#1F4E78")), ("TEXTCOLOR", (0, 0), (-1, 0), colors.white), ("GRID", (0, 0), (-1, -1), 0.4, colors.grey), ("VALIGN", (0, 0), (-1, -1), "TOP"), ("LEFTPADDING", (0, 0), (-1, -1), 3), ("RIGHTPADDING", (0, 0), (-1, -1), 3)]))
+    story.extend([schedule_table, Spacer(1, 10), Paragraph("4. ELC重点評価項目", heading)])
     elc_data = [["統制ID", "重点評価項目", "主なEvidence"]]
     for control in CONTROLS:
         elc_data.append([control["id"], control["item"], control["evidence"].split(";")[0]])
     elc_table = Table(elc_data, colWidths=[55, 155, 240], repeatRows=1)
     elc_table.setStyle(TableStyle([("FONT", (0, 0), (-1, -1), "HeiseiKakuGo-W5"), ("FONTSIZE", (0, 0), (-1, -1), 7.5), ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#1F4E78")), ("TEXTCOLOR", (0, 0), (-1, 0), colors.white), ("GRID", (0, 0), (-1, -1), 0.4, colors.grey), ("VALIGN", (0, 0), (-1, -1), "TOP")]))
-    story.extend([elc_table, Spacer(1, 10), Paragraph("4. 実施体制・報告", heading)])
-    story.append(Paragraph("内部監査室長が統括し、評価結果及び不備・是正措置はCFO、代表取締役、監査等委員会、取締役会へ報告する。重要な不備候補及び判断保留事項は四半期ごとに更新する。", body))
+    story.extend([elc_table, Spacer(1, 10), Paragraph("5. 実施体制・報告", heading)])
+    team_data = [
+        [cell("役割"), cell("担当者"), cell("責任")],
+        [cell("統括/最終レビュー"), cell("内部監査室長 長谷川 剛 (IA001)"), cell("内部監査計画の統括、調書レビュー、不備重要性評価、CFO/代表取締役/監査等委員会への報告")],
+        [cell("ELC/購買/IT担当"), cell("内部監査担当 大塚 美穂 (IA002)"), cell("ELC、購買、ITGC/ITAC、SOC1/CUEC対応の評価実施")],
+        [cell("販売/在庫/FCRP担当"), cell("内部監査担当 山口 健 (IA003)"), cell("販売、在庫/原価、決算・財務報告プロセスの評価実施")],
+    ]
+    team_table = Table(team_data, colWidths=[95, 145, 226], repeatRows=1)
+    team_table.setStyle(TableStyle([("FONT", (0, 0), (-1, -1), "HeiseiKakuGo-W5"), ("FONTSIZE", (0, 0), (-1, -1), 7.2), ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#1F4E78")), ("TEXTCOLOR", (0, 0), (-1, 0), colors.white), ("GRID", (0, 0), (-1, -1), 0.4, colors.grey), ("VALIGN", (0, 0), (-1, -1), "TOP"), ("LEFTPADDING", (0, 0), (-1, -1), 3), ("RIGHTPADDING", (0, 0), (-1, -1), 3)]))
+    story.extend([team_table, Spacer(1, 6)])
+    story.append(Paragraph("評価結果及び不備・是正措置はCFO、代表取締役、監査等委員会、取締役会へ報告する。重要な不備候補及び判断保留事項は四半期ごとに更新する。", body))
     doc.build(story)
 
 
@@ -805,6 +1058,8 @@ def main() -> None:
     rebuild_board_monitoring_csv()
     rebuild_ack_log()
     rebuild_authority_review_csv()
+    rebuild_financial_reporting_responsibility_approval_csv()
+    rebuild_company_profile_pdf()
     rebuild_risk_assessment_xlsx()
     rebuild_policy_review_xlsx()
     rebuild_period_close_log()
