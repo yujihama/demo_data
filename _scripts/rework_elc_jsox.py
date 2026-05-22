@@ -136,7 +136,7 @@ CONTROLS = [
         "frequency": "月次 / 四半期",
         "key": "Y",
         "owner": "経理部",
-        "evidence": "SAP_PeriodClose_JobLog_FY2025.csv; 財務報告連絡会_議事メモ_2025年度Q4.md",
+        "evidence": "SAP_PeriodClose_JobLog_FY2025.csv; 財務報告連絡会_議事メモ_2025年度Q4.pdf",
         "policy": "R16, R17",
         "sample": "12",
         "design_proc": "決算業務規程、月次締めカレンダー、財務報告連絡会の運営ルールを閲覧し、締め、レビュー、報告の責任と期限が定義されていることを確認する。",
@@ -168,7 +168,7 @@ CONTROLS = [
         "frequency": "四半期",
         "key": "Y",
         "owner": "経理部 / 経営企画部",
-        "evidence": "財務報告連絡会_開催実績_FY2025.csv; 財務報告連絡会_議事メモ_2025年度Q4.md",
+        "evidence": "財務報告連絡会_開催実績_FY2025.csv; 財務報告連絡会_議事メモ_2025年度Q4.pdf",
         "policy": "R16, R17",
         "sample": "4",
         "design_proc": "財務報告連絡会の開催目的、参加部門、議題、エスカレーション基準を確認し、財務報告上の重要情報の伝達経路が定義されていることを確認する。",
@@ -303,8 +303,8 @@ def rebuild_mapping_csv() -> None:
     rows: list[dict[str, str]] = []
     for control in CONTROLS:
         filenames = [name.strip() for name in control["evidence"].split(";")]
-        for idx, filename in enumerate(filenames, start=1):
-            rows.append({"key": control["id"], "sample_no": str(idx), "filename": filename})
+        for filename in filenames:
+            rows.append({"key": control["id"], "sample_no": "1", "filename": filename})
     write_csv(RCM_DIR / "Evidence_Mapping_ELC.csv", rows, ["key", "sample_no", "filename"])
 
 
@@ -811,7 +811,10 @@ def rebuild_financial_reporting_minutes() -> None:
 - CFOは、重要な不備候補及び判断保留事項を2026年3月25日取締役会へ報告する。
 - 内部監査室は、追加Evidenceの入手状況を2026年3月31日までに更新する。
 """
-    (ELC_DIR / "財務報告連絡会_議事メモ_2025年度Q4.md").write_text(content, encoding="utf-8")
+    markdown_to_pdf(content, ELC_DIR / "財務報告連絡会_議事メモ_2025年度Q4.pdf")
+    legacy_md = ELC_DIR / "財務報告連絡会_議事メモ_2025年度Q4.md"
+    if legacy_md.exists():
+        legacy_md.unlink()
 
 
 def rebuild_financial_reporting_meeting_log() -> None:
