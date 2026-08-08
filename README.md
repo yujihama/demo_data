@@ -20,6 +20,7 @@ J-SOX（日本版SOX法）内部統制評価の文書セットを格納する。
 | [4.evidence/](4.evidence/) | **エビデンス**：監査人が評価を実施するために被評価部門から得る「素材」（Excel/PDF/画像/CSV/MD） |
 | [5.test_results/](5.test_results/) | **監査人の調書**：評価結果・サンプル判定・ヒアリング記録・不備管理台帳等 |
 | [6.consolidation/](6.consolidation/) | **連結決算業務データ**：子会社連結パッケージ（4社・バリエーション付き）、内部取引照合、在外子会社換算、連結仕訳、連結精算表、連結財務諸表（FY2025） |
+| [7.source_documents/](7.source_documents/) | **インプット文書**：RCM・業務記述書を作成するための規程／マニュアル／要領／ブランク様式・ワークシート・議事録（107件・134ファイル。[README](7.source_documents/README.md)、[document_lineup.csv](7.source_documents/document_lineup.csv)） |
 | [_scripts/](_scripts/) | 生成スクリプト（Python） |
 
 ### エビデンスと監査調書の切り分け
