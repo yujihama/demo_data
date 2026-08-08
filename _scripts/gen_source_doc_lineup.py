@@ -2,11 +2,13 @@
 """7.source_documents/document_lineup.csv を生成する。"""
 import csv
 import os
+import re
+from pathlib import Path
 
 HEADER = [
     "doc_id", "area", "subarea", "layer", "doc_name", "doc_type",
     "owner_dept", "file_format", "related_controls", "fills",
-    "existing", "completeness", "priority",
+    "existing", "completeness", "priority", "status", "files",
 ]
 
 R = []
@@ -302,9 +304,23 @@ add("X-08", A_X, "非公式", "L4", "経理部 業務引継書・個人メモ（
     "FCRP全般", "業務の流れ（規程外の実務）", priority="C")
 
 
-out_dir = "/home/user/demo_data/7.source_documents"
-os.makedirs(out_dir, exist_ok=True)
-path = os.path.join(out_dir, "document_lineup.csv")
+BASE = Path("/home/user/demo_data/7.source_documents")
+
+# 生成済ファイルを doc_id 別に収集
+by_id = {}
+for f in sorted(BASE.rglob("*")):
+    if f.is_file() and f.name != "document_lineup.csv" and f.suffix != ".md" or (
+            f.is_file() and f.suffix == ".md" and f.name != "README.md"):
+        m = re.match(r"([GECFX]-\d{2})", f.name)
+        if m:
+            by_id.setdefault(m.group(1), []).append(str(f.relative_to(BASE)))
+
+for row in R:
+    files = by_id.get(row[0], [])
+    row.append("生成済" if files else "未作成（意図的欠落）")
+    row.append(" | ".join(files))
+
+path = BASE / "document_lineup.csv"
 with open(path, "w", encoding="utf-8-sig", newline="") as f:
     w = csv.writer(f, quoting=csv.QUOTE_ALL)
     w.writerow(HEADER)
@@ -314,3 +330,6 @@ print(f"rows={len(R)}")
 from collections import Counter
 print("area:", Counter(r[1] for r in R))
 print("priority:", Counter(r[12] for r in R))
+print("status:", Counter(r[13] for r in R))
+print("total files:", sum(len(v) for v in by_id.values()))
+print("未作成:", [r[0] for r in R if r[13].startswith("未作成")])
